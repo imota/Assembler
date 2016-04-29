@@ -1,15 +1,4 @@
-#include <iostream>
-#include <string>
-#include <unordered_map>
-
-class Instructions {
-  public:
-  	Instructions();
-	bool isValid(std::string name);
-	std::string getOpcode(std::string name);
-  private:
-  	std::unordered_map<std::string, std::string> opcode_map;
-};
+#include "instruction.h"
 
 Instructions::Instructions() {
 	opcode_map.emplace("ADD", "01");
@@ -34,14 +23,4 @@ bool Instructions::isValid(std::string name) {
 
 std::string Instructions::getOpcode(std::string name) {
 	return opcode_map[name];
-}
-
-int main() {
-	Instructions instructions;
-	
-	std::cout << instructions.isValid("INPUT") << std::endl;
-	//std::cout << instructions.getOpcode("INPUT") << std::endl;
-	std::cout << instructions.isValid("input") << std::endl;
-		
-	return 0;
 }
