@@ -1,0 +1,3 @@
+/home/andersonzago/Desktop/Assembler/build/CMakeFiles/edit_cache.dir
+/home/andersonzago/Desktop/Assembler/build/CMakeFiles/rebuild_cache.dir
+/home/andersonzago/Desktop/Assembler/build/CMakeFiles/Tradutor.dir
