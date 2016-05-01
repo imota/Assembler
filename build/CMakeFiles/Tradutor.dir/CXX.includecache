@@ -24,6 +24,18 @@ string
 vector
 -
 
+../include/instruction.h
+iostream
+-
+string
+-
+unordered_map
+-
+
+../include/token.h
+iostream
+-
+
 /home/andersonzago/Desktop/Assembler/main.cpp
 iostream
 -
@@ -53,4 +65,12 @@ vector
 -
 PreProcessor.h
 /home/andersonzago/Desktop/Assembler/source/PreProcessor.h
+
+/home/andersonzago/Desktop/Assembler/source/instruction.cpp
+instruction.h
+/home/andersonzago/Desktop/Assembler/source/instruction.h
+
+/home/andersonzago/Desktop/Assembler/source/token.cpp
+token.h
+/home/andersonzago/Desktop/Assembler/source/token.h
 

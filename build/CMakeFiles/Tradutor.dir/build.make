@@ -129,11 +129,61 @@ CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o.provides: CMakeFiles/Tradutor.dir
 CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o.provides.build: CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o
 
 
+CMakeFiles/Tradutor.dir/source/instruction.cpp.o: CMakeFiles/Tradutor.dir/flags.make
+CMakeFiles/Tradutor.dir/source/instruction.cpp.o: ../source/instruction.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andersonzago/Desktop/Assembler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Tradutor.dir/source/instruction.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tradutor.dir/source/instruction.cpp.o -c /home/andersonzago/Desktop/Assembler/source/instruction.cpp
+
+CMakeFiles/Tradutor.dir/source/instruction.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tradutor.dir/source/instruction.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andersonzago/Desktop/Assembler/source/instruction.cpp > CMakeFiles/Tradutor.dir/source/instruction.cpp.i
+
+CMakeFiles/Tradutor.dir/source/instruction.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tradutor.dir/source/instruction.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andersonzago/Desktop/Assembler/source/instruction.cpp -o CMakeFiles/Tradutor.dir/source/instruction.cpp.s
+
+CMakeFiles/Tradutor.dir/source/instruction.cpp.o.requires:
+
+.PHONY : CMakeFiles/Tradutor.dir/source/instruction.cpp.o.requires
+
+CMakeFiles/Tradutor.dir/source/instruction.cpp.o.provides: CMakeFiles/Tradutor.dir/source/instruction.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/instruction.cpp.o.provides.build
+.PHONY : CMakeFiles/Tradutor.dir/source/instruction.cpp.o.provides
+
+CMakeFiles/Tradutor.dir/source/instruction.cpp.o.provides.build: CMakeFiles/Tradutor.dir/source/instruction.cpp.o
+
+
+CMakeFiles/Tradutor.dir/source/token.cpp.o: CMakeFiles/Tradutor.dir/flags.make
+CMakeFiles/Tradutor.dir/source/token.cpp.o: ../source/token.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/andersonzago/Desktop/Assembler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Tradutor.dir/source/token.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Tradutor.dir/source/token.cpp.o -c /home/andersonzago/Desktop/Assembler/source/token.cpp
+
+CMakeFiles/Tradutor.dir/source/token.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Tradutor.dir/source/token.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/andersonzago/Desktop/Assembler/source/token.cpp > CMakeFiles/Tradutor.dir/source/token.cpp.i
+
+CMakeFiles/Tradutor.dir/source/token.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Tradutor.dir/source/token.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/andersonzago/Desktop/Assembler/source/token.cpp -o CMakeFiles/Tradutor.dir/source/token.cpp.s
+
+CMakeFiles/Tradutor.dir/source/token.cpp.o.requires:
+
+.PHONY : CMakeFiles/Tradutor.dir/source/token.cpp.o.requires
+
+CMakeFiles/Tradutor.dir/source/token.cpp.o.provides: CMakeFiles/Tradutor.dir/source/token.cpp.o.requires
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/token.cpp.o.provides.build
+.PHONY : CMakeFiles/Tradutor.dir/source/token.cpp.o.provides
+
+CMakeFiles/Tradutor.dir/source/token.cpp.o.provides.build: CMakeFiles/Tradutor.dir/source/token.cpp.o
+
+
 # Object files for target Tradutor
 Tradutor_OBJECTS = \
 "CMakeFiles/Tradutor.dir/main.cpp.o" \
 "CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o" \
-"CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o"
+"CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o" \
+"CMakeFiles/Tradutor.dir/source/instruction.cpp.o" \
+"CMakeFiles/Tradutor.dir/source/token.cpp.o"
 
 # External object files for target Tradutor
 Tradutor_EXTERNAL_OBJECTS =
@@ -141,9 +191,11 @@ Tradutor_EXTERNAL_OBJECTS =
 Tradutor: CMakeFiles/Tradutor.dir/main.cpp.o
 Tradutor: CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o
 Tradutor: CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o
+Tradutor: CMakeFiles/Tradutor.dir/source/instruction.cpp.o
+Tradutor: CMakeFiles/Tradutor.dir/source/token.cpp.o
 Tradutor: CMakeFiles/Tradutor.dir/build.make
 Tradutor: CMakeFiles/Tradutor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andersonzago/Desktop/Assembler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable Tradutor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/andersonzago/Desktop/Assembler/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable Tradutor"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Tradutor.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -154,6 +206,8 @@ CMakeFiles/Tradutor.dir/build: Tradutor
 CMakeFiles/Tradutor.dir/requires: CMakeFiles/Tradutor.dir/main.cpp.o.requires
 CMakeFiles/Tradutor.dir/requires: CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o.requires
 CMakeFiles/Tradutor.dir/requires: CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o.requires
+CMakeFiles/Tradutor.dir/requires: CMakeFiles/Tradutor.dir/source/instruction.cpp.o.requires
+CMakeFiles/Tradutor.dir/requires: CMakeFiles/Tradutor.dir/source/token.cpp.o.requires
 
 .PHONY : CMakeFiles/Tradutor.dir/requires
 

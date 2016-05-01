@@ -12,3 +12,9 @@ CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o: ../source/FirstPass.cpp
 CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o: ../include/PreProcessor.h
 CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o: ../source/PreProcessor.cpp
 
+CMakeFiles/Tradutor.dir/source/instruction.cpp.o: ../include/instruction.h
+CMakeFiles/Tradutor.dir/source/instruction.cpp.o: ../source/instruction.cpp
+
+CMakeFiles/Tradutor.dir/source/token.cpp.o: ../include/token.h
+CMakeFiles/Tradutor.dir/source/token.cpp.o: ../source/token.cpp
+

@@ -204,6 +204,60 @@ source/PreProcessor.cpp.s:
 	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.s
 .PHONY : source/PreProcessor.cpp.s
 
+source/instruction.o: source/instruction.cpp.o
+
+.PHONY : source/instruction.o
+
+# target to build an object file
+source/instruction.cpp.o:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/instruction.cpp.o
+.PHONY : source/instruction.cpp.o
+
+source/instruction.i: source/instruction.cpp.i
+
+.PHONY : source/instruction.i
+
+# target to preprocess a source file
+source/instruction.cpp.i:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/instruction.cpp.i
+.PHONY : source/instruction.cpp.i
+
+source/instruction.s: source/instruction.cpp.s
+
+.PHONY : source/instruction.s
+
+# target to generate assembly for a file
+source/instruction.cpp.s:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/instruction.cpp.s
+.PHONY : source/instruction.cpp.s
+
+source/token.o: source/token.cpp.o
+
+.PHONY : source/token.o
+
+# target to build an object file
+source/token.cpp.o:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/token.cpp.o
+.PHONY : source/token.cpp.o
+
+source/token.i: source/token.cpp.i
+
+.PHONY : source/token.i
+
+# target to preprocess a source file
+source/token.cpp.i:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/token.cpp.i
+.PHONY : source/token.cpp.i
+
+source/token.s: source/token.cpp.s
+
+.PHONY : source/token.s
+
+# target to generate assembly for a file
+source/token.cpp.s:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/token.cpp.s
+.PHONY : source/token.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -222,6 +276,12 @@ help:
 	@echo "... source/PreProcessor.o"
 	@echo "... source/PreProcessor.i"
 	@echo "... source/PreProcessor.s"
+	@echo "... source/instruction.o"
+	@echo "... source/instruction.i"
+	@echo "... source/instruction.s"
+	@echo "... source/token.o"
+	@echo "... source/token.i"
+	@echo "... source/token.s"
 .PHONY : help
 
 

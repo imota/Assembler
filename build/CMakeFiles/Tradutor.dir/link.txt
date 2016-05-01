@@ -1,1 +1,1 @@
-/usr/bin/c++    -std=c++11    CMakeFiles/Tradutor.dir/main.cpp.o CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o  -o Tradutor -rdynamic 
+/usr/bin/c++    -std=c++11    CMakeFiles/Tradutor.dir/main.cpp.o CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o CMakeFiles/Tradutor.dir/source/instruction.cpp.o CMakeFiles/Tradutor.dir/source/token.cpp.o  -o Tradutor -rdynamic 
