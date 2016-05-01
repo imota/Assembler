@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/andersonzago/Desktop/Assembler/build
 CMakeFiles/Tradutor.dir/all:
 	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/depend
 	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andersonzago/Desktop/Assembler/build/CMakeFiles --progress-num=1,2,3,4,5 "Built target Tradutor"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/andersonzago/Desktop/Assembler/build/CMakeFiles --progress-num=1,2,3,4 "Built target Tradutor"
 .PHONY : CMakeFiles/Tradutor.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/Tradutor.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/Tradutor.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/andersonzago/Desktop/Assembler/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/andersonzago/Desktop/Assembler/build/CMakeFiles 4
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/Tradutor.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/andersonzago/Desktop/Assembler/build/CMakeFiles 0
 .PHONY : CMakeFiles/Tradutor.dir/rule

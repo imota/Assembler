@@ -6,24 +6,22 @@
 
 #IncludeRegexTransform: 
 
+../include/FirstPass.h
+iostream
+-
+vector
+-
+string
+-
+PreProcessor.h
+../include/PreProcessor.h
+
 ../include/PreProcessor.h
 iostream
 -
 string
 -
 vector
--
-
-../include/instruction.h
-iostream
--
-string
--
-unordered_map
--
-
-../include/token.h
-iostream
 -
 
 /home/andersonzago/Desktop/Assembler/main.cpp
@@ -35,6 +33,14 @@ string
 -
 PreProcessor.h
 /home/andersonzago/Desktop/Assembler/PreProcessor.h
+FirstPass.h
+/home/andersonzago/Desktop/Assembler/FirstPass.h
+
+/home/andersonzago/Desktop/Assembler/source/FirstPass.cpp
+iostream
+-
+FirstPass.h
+/home/andersonzago/Desktop/Assembler/source/FirstPass.h
 
 /home/andersonzago/Desktop/Assembler/source/PreProcessor.cpp
 iostream
@@ -47,12 +53,4 @@ vector
 -
 PreProcessor.h
 /home/andersonzago/Desktop/Assembler/source/PreProcessor.h
-
-/home/andersonzago/Desktop/Assembler/source/instruction.cpp
-instruction.h
-/home/andersonzago/Desktop/Assembler/source/instruction.h
-
-/home/andersonzago/Desktop/Assembler/source/token.cpp
-token.h
-/home/andersonzago/Desktop/Assembler/source/token.h
 

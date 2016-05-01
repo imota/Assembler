@@ -5,12 +5,18 @@
 #include<string>
 #include<vector>
 
+struct LineOfFile{
+	LineOfFile(std::string& s, uint n) : line(s), number(n) {}
+	std::string line;
+	uint number;
+};
+
 class PreProcessor {
 public:
 	PreProcessor(std::string& frname);
 	~PreProcessor();
 	void changeReadFileName(std::string& newname);
-	std::vector<std::string>& giveStringVector();
+	std::vector<LineOfFile>& giveStringVector();
 	void removeComments();
 	void removeEmptySpaces();
 	void preProcessFile();
@@ -22,7 +28,7 @@ public:
 
 private:
 	std::string frname;	//name of file to read
-	std::vector<std::string> preProcessed; //vector of pre-processed file lines
+	std::vector<LineOfFile> preProcessed; //vector of pre-processed file lines
 
 };
 

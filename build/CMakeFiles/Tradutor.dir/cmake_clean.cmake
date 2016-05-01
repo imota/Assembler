@@ -1,8 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Tradutor.dir/main.cpp.o"
   "CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o"
-  "CMakeFiles/Tradutor.dir/source/instruction.cpp.o"
-  "CMakeFiles/Tradutor.dir/source/token.cpp.o"
+  "CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o"
   "Tradutor.pdb"
   "Tradutor"
 )

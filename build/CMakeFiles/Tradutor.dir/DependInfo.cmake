@@ -5,9 +5,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/andersonzago/Desktop/Assembler/main.cpp" "/home/andersonzago/Desktop/Assembler/build/CMakeFiles/Tradutor.dir/main.cpp.o"
+  "/home/andersonzago/Desktop/Assembler/source/FirstPass.cpp" "/home/andersonzago/Desktop/Assembler/build/CMakeFiles/Tradutor.dir/source/FirstPass.cpp.o"
   "/home/andersonzago/Desktop/Assembler/source/PreProcessor.cpp" "/home/andersonzago/Desktop/Assembler/build/CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.o"
-  "/home/andersonzago/Desktop/Assembler/source/instruction.cpp" "/home/andersonzago/Desktop/Assembler/build/CMakeFiles/Tradutor.dir/source/instruction.cpp.o"
-  "/home/andersonzago/Desktop/Assembler/source/token.cpp" "/home/andersonzago/Desktop/Assembler/build/CMakeFiles/Tradutor.dir/source/token.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

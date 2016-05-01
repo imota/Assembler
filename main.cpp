@@ -2,6 +2,7 @@
 #include<fstream>
 #include<string>
 #include "PreProcessor.h"
+#include "FirstPass.h"
 
 
 int main() {
@@ -31,8 +32,8 @@ int main() {
 
 	PreProcessor prep(frname);
 	prep.preProcessFile();
-	//prep.printStrings();
-	std::vector<std::string> vector_of_strings = prep.giveStringVector();
+	prep.printStrings();
+	std::vector<LineOfFile> vector_of_elements = prep.giveStringVector();
 
 
 
