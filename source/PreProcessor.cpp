@@ -11,8 +11,9 @@ bool isSpaceOrTab(char c){
 		return 0;
 }
 
-PreProcessor::PreProcessor(std::string& frname) : frname(frname) { 
-	//preProcessed.push_back(nullptr); 
+PreProcessor& PreProcessor::instance() {
+	static PreProcessor pp;
+	return pp;
 }
 
 PreProcessor::~PreProcessor() {}
@@ -87,13 +88,12 @@ void PreProcessor::removeEmptySpaces() {
 	
 }
 
-void PreProcessor::preProcessFile() {
+std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
+	this->frname = frname;
 	readFileToStrings();
-	//printStrings();
 	removeComments();
-	//printStrings();
 	removeEmptySpaces();
-	//printStrings();
+	return giveStringVector();
 }
 
 void PreProcessor::printStrings() {

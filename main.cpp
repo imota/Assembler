@@ -24,18 +24,12 @@ std::string chooseFile() {
 
 int main() {
 
-	std::string frname;
-	frname = chooseFile();
-
-	PreProcessor prep(frname);
-	prep.preProcessFile();
-	//prep.printStrings();
-	std::vector<LineOfFile> vector_of_elements = prep.giveStringVector();
-
+	std::string frname = chooseFile();
+	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 	std::vector<std::string> parsed_str = Parser::instance().Parse(vector_of_elements);
 
 	for (int i=0;i<parsed_str.size();i++)
-		std::cout << parsed_str[i] << " ";
+		std::cout << parsed_str[i] << std::endl;
 
 	return 0;
 }

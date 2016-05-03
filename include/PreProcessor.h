@@ -8,18 +8,20 @@
 
 class PreProcessor {
 public:
-	PreProcessor(std::string& frname);
+	static PreProcessor& instance();
 	~PreProcessor();
-	void changeReadFileName(std::string& newname);
-	std::vector<LineOfFile>& giveStringVector();
-	void removeComments();
-	void removeEmptySpaces();
-	void preProcessFile();
-	void readFileToStrings();
+	std::vector<LineOfFile>& preProcessFile(std::string frname);
 	void printStrings();
 private:
 	std::string frname;	//name of file to read
 	std::vector<LineOfFile> preProcessed; //vector of pre-processed file lines
+
+	PreProcessor() {}
+	void changeReadFileName(std::string& newname);
+	void readFileToStrings();
+	void removeComments();
+	void removeEmptySpaces();
+	std::vector<LineOfFile>& giveStringVector();
 
 };
 

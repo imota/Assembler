@@ -11,8 +11,8 @@ std::vector<std::string> Parser::Parse(std::vector<LineOfFile> text) {
 	for (int i=0; i < text.size(); i++) {
 		std::vector<std::string> parsed_line = Parse(text[i].line);
 		parsed_text.insert(parsed_text.end(), parsed_line.begin(), parsed_line.end());
-	}
 
+	}
 	return parsed_text;
 }
 
@@ -20,8 +20,8 @@ std::vector<std::string> Parser::Parse(std::string line) {
 	std::vector<std::string> tokens;
 	std::string word;
 
-	for(int i=0; i<line.size(); i++) {
-		if (line[i] != ' ' and i != line.size()-1) {
+	for(int i=0; line[i] != '\n'; i++) {
+		if (line[i] != ' ') {
 			word += line[i];
 		}
 		else {
@@ -29,6 +29,7 @@ std::vector<std::string> Parser::Parse(std::string line) {
 			word.clear();
 		}
 	}
+	tokens.push_back(word);
 
 	return tokens;
 }
