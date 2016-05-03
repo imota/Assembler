@@ -1,3 +1,6 @@
+#ifndef TRAB1_SB_ZAGO_ICARO_PREPROCESSOR
+#define TRAB1_SB_ZAGO_ICARO_PREPROCESSOR
+
 #include <iostream>
 #include <string>
 #include <unordered_map>
@@ -10,3 +13,5 @@ class Instructions {
   private:
   	std::unordered_map<std::string, std::string> opcode_map;
 };
+
+#endif

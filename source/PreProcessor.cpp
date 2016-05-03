@@ -59,7 +59,6 @@ void PreProcessor::removeComments() {
 
 void PreProcessor::removeEmptySpaces() {
 
-	
 	for(size_t i = 0; i < preProcessed.size(); i++){
 
 		//Remove first empty spaces

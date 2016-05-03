@@ -4,12 +4,7 @@
 #include<iostream>
 #include<string>
 #include<vector>
-
-struct LineOfFile{
-	LineOfFile(std::string& s, uint n) : line(s), number(n) {}
-	std::string line;
-	uint number;
-};
+#include "LineOfFile.h"
 
 class PreProcessor {
 public:
@@ -22,10 +17,6 @@ public:
 	void preProcessFile();
 	void readFileToStrings();
 	void printStrings();
-
-
-
-
 private:
 	std::string frname;	//name of file to read
 	std::vector<LineOfFile> preProcessed; //vector of pre-processed file lines

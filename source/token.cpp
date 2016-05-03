@@ -5,13 +5,10 @@ std::string Token::Type() {
 }
 
 bool TokenCreator::isTokenValid(std::string name) {
+	for (int i=0; i < name.size(); i++) {
+		if (not isalpha(name[i]) and name[i] != '_') {
+			return false;
+		}
+	}
 	return true;
-}
-
-int main() {
-	TokenCreator tk;
-	
-	std::cout << tk.isTokenValid("INPUT") << std::endl;
-	
-	return 0;
 }

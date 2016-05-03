@@ -1,4 +1,8 @@
+#ifndef TRAB1_SB_ZAGO_ICARO_PREPROCESSOR
+#define TRAB1_SB_ZAGO_ICARO_PREPROCESSOR
+
 #include <iostream>
+#include <ctype.h>
 
 class Token {
   public:
@@ -17,3 +21,5 @@ class TokenCreator {
   	//bool isInstruction();
   	//bool isOperando();
 };
+
+#endif

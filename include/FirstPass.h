@@ -32,14 +32,6 @@ private:
 	std::vector<LineOfFile> textFile;
 
 };
-
-
-
-
-
-
-
-
 #endif
 
 
