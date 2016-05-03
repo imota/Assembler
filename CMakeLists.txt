@@ -19,6 +19,7 @@ set(SOURCES
 	source/FirstPass.cpp
 	source/instruction.cpp
 	source/token.cpp
+	source/parser.cpp
 	)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
