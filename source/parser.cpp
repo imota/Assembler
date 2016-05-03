@@ -1,5 +1,10 @@
 #include "parser.h"
 
+Parser& Parser::instance() {
+	static Parser p;
+	return p;
+}
+
 std::vector<std::string> Parser::Parse(std::vector<LineOfFile> text) {
 	std::vector<std::string> parsed_text;
 

@@ -3,39 +3,39 @@
 #include<string>
 #include "PreProcessor.h"
 #include "FirstPass.h"
+#include "parser.h"
 
-
-int main() {
-
-	std::string frname; //Name of the file to read
-
-	//std::cout << "Give the name of the file to read: ";
-	//std::cin >> frname;
+std::string chooseFile() {
 	int option;
-	std::cout << "Test file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n[3] ../TestFiles/triangulo.asm\n Option: ";
+	std::cout << "Test file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n[3] ../TestFiles/triangulo.asm\nOption: ";
 	std::cin >> option;
 	switch(option){
 		case 1:
-			frname = "../TestFiles/moda.asm";
-			break;
+			return "../TestFiles/moda.asm";
 		case 2:
-			frname = "../TestFiles/modb.asm";
-			break;
+			return "../TestFiles/modb.asm";
 		case 3:
-			frname = "../TestFiles/triangulo.asm";
-			break;
+			return "../TestFiles/triangulo.asm";
 		default:
 			std::cout << "Option not recognized. Program will close now.\n";
-			return 0;
-			break;
-	}
+			return "";
+	}	
+}
+
+int main() {
+
+	std::string frname;
+	frname = chooseFile();
 
 	PreProcessor prep(frname);
 	prep.preProcessFile();
-	prep.printStrings();
+	//prep.printStrings();
 	std::vector<LineOfFile> vector_of_elements = prep.giveStringVector();
 
+	std::vector<std::string> parsed_str = Parser::instance().Parse(vector_of_elements);
 
+	for (int i=0;i<parsed_str.size();i++)
+		std::cout << parsed_str[i] << " ";
 
 	return 0;
 }

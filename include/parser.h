@@ -7,8 +7,10 @@
 
 class Parser {
   public:
+  	static Parser& instance();
   	std::vector<std::string> Parse(std::vector<LineOfFile> text);
   private:
+  	Parser() {}
   	std::vector<std::string> Parse(std::string line);
 };
 
