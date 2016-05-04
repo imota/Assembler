@@ -26,10 +26,10 @@ int main() {
 
 	std::string frname = chooseFile();
 	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
-	std::vector<std::string> parsed_str = Parser::instance().Parse(vector_of_elements);
+	std::vector<LineOfFile> parsed_str = Parser::instance().Parse(vector_of_elements);
 
 	for (int i=0;i<parsed_str.size();i++)
-		std::cout << parsed_str[i] << std::endl;
+		std::cout << parsed_str[i].line << " - " << parsed_str[i].number << std::endl;
 
 	return 0;
 }

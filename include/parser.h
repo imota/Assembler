@@ -3,15 +3,16 @@
 
 #include <iostream>
 #include <vector>
+#include <unordered_map>
 #include "LineOfFile.h"
 
 class Parser {
   public:
   	static Parser& instance();
-  	std::vector<std::string> Parse(std::vector<LineOfFile> text);
+  	std::vector<LineOfFile> Parse(std::vector<LineOfFile> text);
   private:
   	Parser() {}
-  	std::vector<std::string> Parse(std::string line);
+  	std::vector<LineOfFile> Parse(LineOfFile line);
 };
 
 #endif
