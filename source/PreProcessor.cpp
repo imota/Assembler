@@ -2,10 +2,11 @@
 #include<fstream>
 #include<string>
 #include<vector>
+#include<locale>
 #include "PreProcessor.h"
 
 bool isSpaceOrTab(char c){
-	if(c == ' ' || c == '\t')
+	if(c == ' ' or c == '\t' or c == '\r')
 		return 1;
 	else
 		return 0;
@@ -26,10 +27,12 @@ void PreProcessor::readFileToStrings() {
 	std::ifstream ifs(frname);
 	std::string line;
 	size_t i = 1;
+	std::locale loc;	//To use function toupper
 
 	if(ifs.is_open()){
 
 		while(std::getline(ifs, line)){		//Read line from file
+			for(char& c : line) { c = std::toupper(c,loc); } //Converts every character to uppercase
 			line.push_back('\n');
 			LineOfFile newLine(line, i);
 			preProcessed.push_back(newLine);
