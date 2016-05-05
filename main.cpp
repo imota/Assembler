@@ -4,6 +4,7 @@
 #include "PreProcessor.h"
 #include "FirstPass.h"
 #include "parser.h"
+#include "token.h"
 
 std::string chooseFile() {
 	int option;
@@ -26,10 +27,17 @@ int main() {
 
 	std::string frname = chooseFile();
 	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
-	std::vector<LineOfFile> parsed_str = Parser::instance().Parse(vector_of_elements);
+	std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
 
-	for (int i=0;i<parsed_str.size();i++)
-		std::cout << parsed_str[i].line << " - " << parsed_str[i].number << std::endl;
+	TokenCreator tc;
+
+	for (int i=0;i<parsed_str.size();i++) {
+		//std::cout << parsed_str[i].name << std::endl;
+			tc.isTokenValid(parsed_str[i]);
+			//if (tc.isTokenValid(parsed_str[i]))
+			//	std::cout << parsed_str[i].name << " - " << parsed_str[i].line_number << std::endl;
+			//	int j = 0;	
+	}
 
 	return 0;
 }
