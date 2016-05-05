@@ -15,21 +15,27 @@ struct SimbleTableElement {
 
 struct DefinitionTableElement{
 	std::string name;
+	uint address;
 
 };
 
 struct UseTableElement {
 	std::string name;
-	uint sumValue;
+	uint sumAddress;
 };
 
 class FirstPass {
 public:
-	FirstPass();
+	static FirstPass& instance();
 	~FirstPass();
 
 private:
-	std::vector<LineOfFile> textFile;
+	std::vector<*Token> textFile;
+	std::vector<SimbleTableElement> simbleTable;
+	std::vector<DefinitionTableElement> definitionTable;
+	std::vector<UseTableElement> useTable;
+
+	FirstPass();
 
 };
 #endif
