@@ -32,11 +32,8 @@ int main() {
 	TokenCreator tc;
 
 	for (int i=0;i<parsed_str.size();i++) {
-		//std::cout << parsed_str[i].name << std::endl;
-			tc.isTokenValid(parsed_str[i]);
-			//if (tc.isTokenValid(parsed_str[i]))
-			//	std::cout << parsed_str[i].name << " - " << parsed_str[i].line_number << std::endl;
-			//	int j = 0;	
+		if (not tc.isTokenValid(parsed_str[i]))
+			std::cout << parsed_str[i].name << " - " << parsed_str[i].line_number << std::endl;
 	}
 
 	return 0;
