@@ -7,18 +7,20 @@ std::string Token::Type() {
 }
 
 bool TokenCreator::isTokenValid(Token word) {
-	//if (isNumber(word.name))
-	//	std::cout << word.name << std::endl;
+	if (isNumber(word.name))
+		return true;
+
+	if (startsWithNumber(word.name))
+		return false;
 
 	for (int i=0;i<word.name.size();i++) {
-		if (not isalpha(word.name[i])) {
-			if (word.name[i] != '_') {
-				if (not (word.name[i] == ':' and i == word.name.size()-1)) {
-					std::cout << word.name[i] << std::endl;	
-				}
+		if (isSpecialCharacter(word.name[i]) and word.name[i] != '_') {
+			if (not(word.name[i] == ':' and i == word.name.size()-1)) {
+				return false;
 			}
 		}
 	}
+
 	return true;
 }
 
@@ -35,4 +37,8 @@ bool TokenCreator::isNumber(std::string token) {
 		if (!isdigit(token[i]))
 			return false;
 	return true;
+}
+
+bool TokenCreator::isSpecialCharacter(char c) {
+	return (not isalpha(c) and not isdigit(c));
 }

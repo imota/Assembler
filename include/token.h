@@ -2,7 +2,6 @@
 #define TRAB1_SB_ZAGO_ICARO_TOKEN
 
 #include <iostream>
-#include <ctype.h>
 #include "LineOfFile.h"
 
 class Token {
@@ -30,6 +29,7 @@ class TokenCreator {
 
     bool startsWithNumber(std::string token);
     bool isNumber(std::string token);
+    bool isSpecialCharacter(char c);
 };
 
 #endif
