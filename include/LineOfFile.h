@@ -1,5 +1,5 @@
-#ifndef LINE_OF_FILE_H_
-#define LINE_OF_FILE_H_
+#ifndef TRAB1_SB_ZAGO_ICARO_LINE_OF_FILE
+#define TRAB1_SB_ZAGO_ICARO_LINE_OF_FILE
 
 struct LineOfFile{
 	LineOfFile(std::string& s, uint n) : line(s), number(n) {}

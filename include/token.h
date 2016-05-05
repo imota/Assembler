@@ -1,25 +1,35 @@
-#ifndef TRAB1_SB_ZAGO_ICARO_PREPROCESSOR
-#define TRAB1_SB_ZAGO_ICARO_PREPROCESSOR
+#ifndef TRAB1_SB_ZAGO_ICARO_TOKEN
+#define TRAB1_SB_ZAGO_ICARO_TOKEN
 
 #include <iostream>
 #include <ctype.h>
+#include "LineOfFile.h"
 
 class Token {
   public:
-  	virtual std::string getOpcode(std::string name) = 0;
-	std::string Type();
+    Token(std::string name, int line_number);
+    virtual std::string getOpcode(std::string name) {}
+    std::string Type();
+    std::string name;
+    int line_number;
+
   private:	
   	std::string type;
 };
 
 class TokenCreator {
   public:
-  	bool isTokenValid(std::string name);
+    TokenCreator() {}
+  	bool isTokenValid(Token word);
   	//Token generateToken();
   private:
+    void generateError(Token word);
   	//bool isLabel();
   	//bool isInstruction();
   	//bool isOperando();
+
+    bool startsWithNumber(std::string token);
+    bool isNumber(std::string token);
 };
 
 #endif
