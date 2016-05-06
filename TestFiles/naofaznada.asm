@@ -1,3 +1,5 @@
+; comentário
+FLAG: EQU 1
 MOD_B: begin
 SECTION TExT
 A: EXTern
@@ -8,8 +10,12 @@ LOADD A
 MUL B
 STORE R
 DIV DOIS
-store R+1
+store R +     1
 JMP L1
+ADD FLAG
+SUB FLAG
+IF FLAG
+		DIV		DOIS
 
 SECTION			 DATA
 R: SPACE 2

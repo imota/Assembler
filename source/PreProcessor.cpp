@@ -3,6 +3,7 @@
 #include<string>
 #include<vector>
 #include<locale>
+#include<sstream>
 #include "PreProcessor.h"
 
 bool isSpaceOrTab(char c){
@@ -107,10 +108,73 @@ void PreProcessor::removeEmptySpaces() {
 	
 }
 
+void PreProcessor::removeDirectivesEquIf() {
+
+	std::string word;
+	for(size_t i = 0; i < preProcessed.size(); i++){
+		std::istringstream iss(preProcessed[i].line);
+		std::string word_prev = " ";
+		while(iss >> word){
+			if(word == "EQU"){
+				std::string next_word;
+				if(iss >> next_word and word_prev[word_prev.size()-1] == ':'){
+					word_prev.pop_back();
+					DefinedLabel newdef(word_prev, std::stoi(next_word));
+					definedLabels.push_back(newdef);
+
+					//Remove analysed words from line
+					size_t pos = preProcessed[i].line.find("EQU");
+					preProcessed[i].line.erase(pos, 3);
+					pos = preProcessed[i].line.find(next_word);
+					preProcessed[i].line.erase(pos, next_word.size());
+					word_prev.push_back(':');
+					pos = preProcessed[i].line.find(word_prev);
+					preProcessed[i].line.erase(pos, word_prev.size());
+
+					word = next_word;
+				}
+			}
+
+			else if (word == "IF"){
+				std::string next_word;
+				if(iss >> next_word){
+					bool encontrou = 0;
+					for(DefinedLabel& def : definedLabels){
+						if(next_word == def.name)
+							encontrou = 1;
+					}
+					if(!encontrou and i+1 < preProcessed.size()){
+						preProcessed.erase(preProcessed.begin() + i+1);
+					}
+					size_t pos = preProcessed[i].line.find("IF");
+					preProcessed[i].line.erase(pos, 2);
+					pos = preProcessed[i].line.find(next_word);
+					preProcessed[i].line.erase(pos, next_word.size());
+				}
+			}
+
+			else{
+				for(DefinedLabel& def : definedLabels){
+					if(def.name == word){	//If word is a pre-defined string
+						//Replace word with its value
+						size_t pos = preProcessed[i].line.find(word);
+						std::stringstream ss;
+						ss << def.value;
+						preProcessed[i].line.replace(pos, word.size(), ss.str());
+					}
+				}
+			}
+			word_prev = word;
+		}
+
+	}
+}
+
 std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
 	this->frname = frname;
 	readFileToStrings();
 	removeComments();
+	removeDirectivesEquIf();
 	removeEmptySpaces();
 	printStrings();
 	return giveStringVector();

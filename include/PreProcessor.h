@@ -6,6 +6,13 @@
 #include<vector>
 #include "LineOfFile.h"
 
+//Labels defined by directive EQU
+struct DefinedLabel{
+	DefinedLabel(std::string& n, int v) : name(n), value(v) {}
+	std::string name;
+	int value;
+};
+
 class PreProcessor {
 public:
 	static PreProcessor& instance();
@@ -15,11 +22,13 @@ public:
 private:
 	std::string frname;	//name of file to read
 	std::vector<LineOfFile> preProcessed; //vector of pre-processed file lines
+	std::vector<DefinedLabel> definedLabels;
 
 	PreProcessor() {}
 	void changeReadFileName(std::string& newname);
 	void readFileToStrings();
 	void removeComments();
+	void removeDirectivesEquIf();
 	void removeEmptySpaces();
 	std::vector<LineOfFile>& giveStringVector();
 
