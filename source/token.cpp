@@ -7,6 +7,12 @@ std::string Token::Type() {
 }
 
 bool TokenCreator::isTokenValid(Token word) {
+	if (word.name.empty())
+		return false;
+
+	if (word.name.find("+") != std::string::npos) 
+		return isValidSum(word);
+
 	if (isNumber(word.name))
 		return true;
 
@@ -41,4 +47,31 @@ bool TokenCreator::isNumber(std::string token) {
 
 bool TokenCreator::isSpecialCharacter(char c) {
 	return (not isalpha(c) and not isdigit(c));
+}
+
+bool TokenCreator::isValidSum(Token token) {
+	std::vector<std::string> names;
+	std::string name_tmp;
+
+	for (int i=0;i<token.name.size();i++) {
+		if (token.name[i] != '+') {
+			name_tmp = name_tmp + token.name[i];
+		}
+		else {
+			if (name_tmp == "")
+				name_tmp = ".";
+			names.push_back(name_tmp);
+			name_tmp.clear();
+		}
+	}
+	if (name_tmp == "")
+		name_tmp = ".";
+	names.push_back(name_tmp);
+
+	for (int i=1;i<names.size();i++)
+		if (not isNumber(names[i]))	
+			return false;
+
+	Token first_element(names[0],token.line_number);
+	return isTokenValid(first_element) and not isNumber(first_element.name);
 }
