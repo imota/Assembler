@@ -8,7 +8,7 @@
 
 std::string chooseFile() {
 	int option;
-	std::cout << "Test file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n[3] ../TestFiles/triangulo.asm\nOption: ";
+	std::cout << "Test file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n[4] ../TestFiles/naofaznada.asm\n[3] ../TestFiles/triangulo.asm\nOption: ";
 	std::cin >> option;
 	switch(option){
 		case 1:
@@ -17,6 +17,8 @@ std::string chooseFile() {
 			return "../TestFiles/modb.asm";
 		case 3:
 			return "../TestFiles/triangulo.asm";
+		case 4:
+			return "../TestFiles/naofaznada.asm";
 		default:
 			std::cout << "Option not recognized. Program will close now.\n";
 			return "";
