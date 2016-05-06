@@ -44,7 +44,7 @@ private:
 	std::vector<UseTableElement> useTable;
 
 	FirstPass();
-	void writeSimbleTable();
+	void writeTables();
 
 };
 #endif

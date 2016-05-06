@@ -80,6 +80,22 @@ void PreProcessor::removeEmptySpaces() {
 			}
 		}
 
+		//Remove space between '+'. Example: "R + 1" becomes "R+1"
+		for(LineOfFile& eachElement : preProcessed){
+			for(size_t i = 0; i < eachElement.line.size(); i++){
+				if(eachElement.line[i] == '+'){
+					if(i+1 < eachElement.line.size()){
+						if( isSpaceOrTab(eachElement.line[i+1]) )
+							eachElement.line.erase(eachElement.line.begin() + i + 1);
+					}
+					if(i-1 >= 0){
+						if( isSpaceOrTab(eachElement.line[i-1]) )
+							eachElement.line.erase(eachElement.line.begin() + i - 1);
+					}
+				}
+			}
+		}
+
 		//Remove empty elements
 		//In ASCII any char with value less than 21 is not a letter/number/valid special character
 		if(preProcessed[i].line[0] < 21 || (preProcessed[i].line).empty()){	//If first character of element is '\n'
@@ -96,6 +112,7 @@ std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
 	readFileToStrings();
 	removeComments();
 	removeEmptySpaces();
+	printStrings();
 	return giveStringVector();
 }
 
