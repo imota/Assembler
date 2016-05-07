@@ -1,0 +1,29 @@
+#ifndef TRAB1_SB_ZAGO_ICARO_TOKEN_CREATOR
+#define TRAB1_SB_ZAGO_ICARO_TOKEN_CREATOR
+
+#include <iostream>
+#include <vector>
+#include "LineOfFile.h"
+#include "token.h"
+#include "instruction.h"
+
+class TokenCreator {
+  public:
+    TokenCreator() {}
+  	bool isTokenValid(Token word);
+    void generateError(Token word);
+
+  	Token identifyTokenType(Token token);
+  private:
+  	bool isLabel(Token token);
+  	bool isInstruction(Token token);
+  	//bool isOperator(Token word);
+    //bool isOperand(Token word);
+
+    bool startsWithNumber(std::string token);
+    bool isNumber(std::string token);
+    bool isSpecialCharacter(char c);
+    bool isValidSum(Token token);
+};
+
+#endif
