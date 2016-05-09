@@ -1,5 +1,10 @@
 #include "TokenCreator.h"
 
+TokenCreator& TokenCreator::instance() {
+	static TokenCreator tc;
+	return tc;
+}
+
 bool TokenCreator::isTokenValid(Token word) {
 	if (word.name.empty())
 		return false;
