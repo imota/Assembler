@@ -17,9 +17,10 @@ ${CMAKE_CURRENT_SOURCE_DIR}/include
 set(SOURCES 
 	source/PreProcessor.cpp
 	source/FirstPass.cpp
-	source/instruction.cpp
+	source/keywords.cpp
 	source/token.cpp
 	source/parser.cpp
+	source/TokenCreator.cpp
 	)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})

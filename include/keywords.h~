@@ -1,0 +1,26 @@
+#ifndef TRAB1_SB_ZAGO_ICARO_INSTRUCTION
+#define TRAB1_SB_ZAGO_ICARO_INSTRUCTION
+
+#include <iostream>
+#include <string>
+#include <unordered_map>
+
+class KeyWords {
+  public:
+  	bool isValid(std::string name);
+  protected:
+  	std::unordered_map<std::string, std::string> map;
+};
+
+class Instructions : public KeyWords {
+  public:
+  	Instructions();
+  	std::string getOpcode(std::string name);
+};
+
+class Directives : public KeyWords {
+  public:
+  	Directives();
+};
+
+#endif
