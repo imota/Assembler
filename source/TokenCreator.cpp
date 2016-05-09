@@ -78,12 +78,18 @@ bool TokenCreator::isInstruction(Token token) {
 	return Instructions().isValid(token.name);
 }
 
+bool TokenCreator::isDirective(Token token) {
+	return Directives().isValid(token.name);;
+}
+
 Token TokenCreator::identifyTokenType(Token token) {
 	std::string type;
 	if (isLabel(token))
 		type = "LABEL";
 	else if (isInstruction(token))
 		type = "OPERATOR";
+	else if(isDirective(token))
+		type = "DIRECTIVE";
 	else
 		type = "OPERAND";
 	return Token(token.name, token.line_number, type);
