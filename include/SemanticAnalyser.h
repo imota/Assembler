@@ -20,9 +20,23 @@ private:
 	std::vector<SimbleTableElement> simbleTable;
 	std::vector<DefinitionTableElement> definitionTable;
 	std::vector<UseTableElement> useTable;
+	uint section_data_address = 0;
 
 	void checkSectionOrder();
 	void checkRepeatedLabels();
+
+	void checkMissingLabels();
+
+	void calculateSectionDataAddress();
+	void checkInvalidJump();
+	bool isJumpOperator(std::string name);
+	int returnLabelValue(std::string name);
+
+	std::string getLabelByValue(uint value);
+	void checkDivisionZero();
+	void checkStop();
+	void checkStoreToConst();
+
 	void printError(int line, std::string message, std::string errorType = "SEMANTIC");
 
 

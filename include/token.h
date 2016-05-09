@@ -10,7 +10,7 @@ class Token {
     std::string name;
     int line_number;
     std::string type;
-    uint memAddress;
+    uint memAddress = -1;
 };
 
 #endif

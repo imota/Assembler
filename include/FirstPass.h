@@ -12,7 +12,11 @@ struct SimbleTableElement {
 	std::string name;
 	uint value;
 	bool relative;
+
+	//These values help with posterior operations
 	uint line_number;
+	bool isConst = 0;
+	float constValue = -1.5;
 };
 
 struct DefinitionTableElement{
