@@ -14,6 +14,7 @@ FirstPass& FirstPass::instance() {
 std::vector<SimbleTableElement>& FirstPass::getSimbleTable() 		 { return simbleTable; }
 std::vector<DefinitionTableElement>& FirstPass::getDefinitionTable() { return definitionTable; }
 std::vector<UseTableElement>& FirstPass::getUseTable() 				 { return useTable; }
+std::vector<Token*>& FirstPass::getTokens()							 { return tokens; }
 
 void FirstPass::makePass(std::vector<Token*>& tks){
 	tokens = tks;
@@ -35,13 +36,13 @@ void FirstPass::writeTables(){
 				(tokens[i]->name).pop_back();		//Removes ":" from the end of string
 
 				if(tokens[i+1]->name == "EXTERN"){	//LABEL: EXTERN
-					SimbleTableElement newSimbleElement(tokens[i]->name, memCounter, false);
+					SimbleTableElement newSimbleElement(tokens[i]->name, memCounter, false, tokens[i]->line_number);
 					simbleTable.push_back(newSimbleElement); //Add the label to simbleTable
 					useNames.push_back(tokens[i]->name);		//Label is extern and will be in Use Table
 					tokens.erase(tokens.begin()+i+1);
 				}
 				else{
-					SimbleTableElement newSimbleElement(tokens[i]->name, memCounter, true);
+					SimbleTableElement newSimbleElement(tokens[i]->name, memCounter, true, tokens[i]->line_number);
 					simbleTable.push_back(newSimbleElement); //Add the label to simbleTable
 				}
 			}

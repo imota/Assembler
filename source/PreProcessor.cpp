@@ -97,13 +97,20 @@ void PreProcessor::removeEmptySpaces() {
 			}
 		}
 
+		//Remove last empty spaces
+		while( isSpaceOrTab(preProcessed[i].line[ (preProcessed[i].line).size() - 1 ]) ){
+			(preProcessed[i].line).erase((preProcessed[i].line).begin() + (preProcessed[i].line).size() - 1);
+		}
+		while( isSpaceOrTab(preProcessed[i].line[ (preProcessed[i].line).size() - 2 ]) ){
+			(preProcessed[i].line).erase((preProcessed[i].line).begin() + (preProcessed[i].line).size() - 2);
+		}
+
 		//Remove empty elements
 		//In ASCII any char with value less than 21 is not a letter/number/valid special character
 		if(preProcessed[i].line[0] < 21 || (preProcessed[i].line).empty()){	//If first character of element is '\n'
 			preProcessed.erase(preProcessed.begin() + i);	//Remove element
 			i--;
 		}
-
 	}
 	
 }
@@ -138,13 +145,16 @@ void PreProcessor::removeDirectivesEquIf() {
 			else if (word == "IF"){
 				std::string next_word;
 				if(iss >> next_word){
-					bool encontrou = 0;
+					float encontrou = -1.5;	//Random float number to indicate label not found (our scope only receives integers)
 					for(DefinedLabel& def : definedLabels){
 						if(next_word == def.name)
-							encontrou = 1;
+							encontrou = def.value;
 					}
-					if(!encontrou and i+1 < preProcessed.size()){
+					if(encontrou == 0 and i+1 < preProcessed.size()){
 						preProcessed.erase(preProcessed.begin() + i+1);
+					}
+					else if(encontrou == -1.5){
+						//Print error for label not defined?
 					}
 					size_t pos = preProcessed[i].line.find("IF");
 					preProcessed[i].line.erase(pos, 2);
@@ -152,18 +162,7 @@ void PreProcessor::removeDirectivesEquIf() {
 					preProcessed[i].line.erase(pos, next_word.size());
 				}
 			}
-
-			else{
-				for(DefinedLabel& def : definedLabels){
-					if(def.name == word){	//If word is a pre-defined string
-						//Replace word with its value
-						size_t pos = preProcessed[i].line.find(word);
-						std::stringstream ss;
-						ss << def.value;
-						preProcessed[i].line.replace(pos, word.size(), ss.str());
-					}
-				}
-			}
+			
 			word_prev = word;
 		}
 

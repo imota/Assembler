@@ -8,10 +8,11 @@
 #include "token.h"
 
 struct SimbleTableElement {
-	SimbleTableElement(std::string s, uint n, bool r) : name(s), value(n), relative(r) {}
+	SimbleTableElement(std::string s, uint n, bool r, uint l) : name(s), value(n), relative(r), line_number(l) {}
 	std::string name;
 	uint value;
 	bool relative;
+	uint line_number;
 };
 
 struct DefinitionTableElement{
@@ -34,6 +35,7 @@ public:
 	std::vector<SimbleTableElement>& getSimbleTable();
 	std::vector<DefinitionTableElement>& getDefinitionTable();
 	std::vector<UseTableElement>& getUseTable();
+	std::vector<Token*>& getTokens();
 	void makePass(std::vector<Token*>& tks);
 
 
