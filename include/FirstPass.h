@@ -15,9 +15,9 @@ struct SimbleTableElement {
 };
 
 struct DefinitionTableElement{
-	DefinitionTableElement(std::string s, uint a) : name(s), address(a) {}
+	DefinitionTableElement(std::string s) : name(s), address(-1) {}
 	std::string name;
-	uint address;
+	int address;
 
 };
 
@@ -42,9 +42,15 @@ private:
 	std::vector<SimbleTableElement> simbleTable;
 	std::vector<DefinitionTableElement> definitionTable;
 	std::vector<UseTableElement> useTable;
+	std::vector<std::string> useNames;
 
 	FirstPass();
 	void writeTables();
+	void printLabels();
+	void printTables();
+	bool countMem(std::string& name);
+	void defineUseTableValues();
+	void defineDefinitionTableValues();
 
 };
 #endif

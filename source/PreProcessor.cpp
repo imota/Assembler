@@ -174,6 +174,7 @@ std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
 	this->frname = frname;
 	readFileToStrings();
 	removeComments();
+	removeEmptySpaces();
 	removeDirectivesEquIf();
 	removeEmptySpaces();
 	printStrings();
