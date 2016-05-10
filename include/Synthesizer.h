@@ -26,6 +26,9 @@ private:
 	std::vector<SimbleTableElement> simbleTable;
 	std::vector<DefinitionTableElement> definitionTable;
 	std::vector<UseTableElement> useTable;
+	bool error = 0;
+
+	void printLabels();
 };
 
 

@@ -14,6 +14,10 @@ public:
 	~SemanticAnalyser() {}
 	void makeAnalysis(std::vector<Token*>& tks, std::vector<SimbleTableElement>& st,
 					  std::vector<DefinitionTableElement>& dt, std::vector<UseTableElement>& ut);
+	std::vector<SimbleTableElement>& getSimbleTable();
+	std::vector<DefinitionTableElement>& getDefinitionTable();
+	std::vector<UseTableElement>& getUseTable();
+	std::vector<Token*>& getTokens();
 
 private:
 	std::vector<Token*> tokens;

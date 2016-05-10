@@ -51,10 +51,10 @@ int main() {
 											  FirstPass::instance().getDefinitionTable(), 
 											  FirstPass::instance().getUseTable());
 	
-	Synthesizer::instance().synthesize(FirstPass::instance().getTokens(), 
-											  FirstPass::instance().getSimbleTable(),
-											  FirstPass::instance().getDefinitionTable(), 
-											  FirstPass::instance().getUseTable());							  
+	Synthesizer::instance().synthesize(SemanticAnalyser::instance().getTokens(), 
+									  SemanticAnalyser::instance().getSimbleTable(),
+									  SemanticAnalyser::instance().getDefinitionTable(), 
+									  SemanticAnalyser::instance().getUseTable());							  
 
 	return 0;
 }

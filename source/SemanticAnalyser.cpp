@@ -9,6 +9,10 @@ SemanticAnalyser& SemanticAnalyser::instance() {
 	return sa;
 }
 
+std::vector<SimbleTableElement>& SemanticAnalyser::getSimbleTable() 		 { return simbleTable; }
+std::vector<DefinitionTableElement>& SemanticAnalyser::getDefinitionTable() { return definitionTable; }
+std::vector<UseTableElement>& SemanticAnalyser::getUseTable() 				 { return useTable; }
+std::vector<Token*>& SemanticAnalyser::getTokens()							 { return tokens; }
 
 void SemanticAnalyser::makeAnalysis(std::vector<Token*>& tks, std::vector<SimbleTableElement>& st,
 					  std::vector<DefinitionTableElement>& dt, std::vector<UseTableElement>& ut){
