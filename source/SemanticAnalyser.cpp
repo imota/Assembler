@@ -1,5 +1,6 @@
 #include<iostream>
 #include<sstream>
+#include "Error.h"
 #include "SemanticAnalyser.h"
 
 SemanticAnalyser& SemanticAnalyser::instance() {
@@ -368,9 +369,6 @@ bool SemanticAnalyser::isUseTableElement(std::string label){
 //This Method prints an error message
 //errorType <- SEMANTIC
 void SemanticAnalyser::printError(int line, std::string message, std::string errorType){
-	if(line > -1)
-		std::cout << std::endl << errorType << " ERROR on line " << line << ": " << message << std::endl;
-	if(line == -1)
-		std::cout << std::endl << errorType << " ERROR: " << message << std::endl;
+	Error::instance().message(errorType, message, line);
 	
 }

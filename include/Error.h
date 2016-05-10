@@ -7,6 +7,7 @@ class Error {
   public:
   	static Error& instance();
   	void message(std::string type, std::string message, int line = -1);
+  	bool error = 0;
   private:
   	Error() {}
 };

@@ -4,6 +4,7 @@
 #include<fstream>
 #include "Synthesizer.h"
 #include "keywords.h"
+#include "Error.h"
 
 Synthesizer& Synthesizer::instance() {
 	static Synthesizer sy;
@@ -19,8 +20,6 @@ void Synthesizer::synthesize(std::vector<Token*>& tks, std::vector<SimbleTableEl
 	useTable = ut;
 	outFileName = fname;
 
-	std::cout << std::endl << "LISTA SINTETIZADOR: " << std::endl;
-	printLabels();
 	checkErrors();
 	if(!error){
 		getRelativeMemAddresses();
@@ -48,9 +47,8 @@ int Synthesizer::returnLabelValue(std::string name){
 }
 
 void Synthesizer::checkErrors() {
-	/*
-	if() { error = 1; }
-	*/
+	if(Error::instance().error)
+		error = 1;
 }
 
 bool Synthesizer::isModule() {
@@ -123,6 +121,12 @@ void Synthesizer::writeCode(std::ofstream& myfile) {
 			myfile << hash.opcode(tokens[i]->name) << " ";
 		else if(tokens[i]->type == "OPERAND")
 			myfile << returnLabelValue(tokens[i]->name) << " ";
+		else if(tokens[i]->name == "SPACE"){
+			for(size_t j = 0; j < std::stoi(tokens[i+1]->name); j++)	//Write as many zeros as there are reserved spaces
+				myfile << "0 ";
+		}
+		else if(tokens[i]->name == "CONST")
+			myfile << tokens[i+1]->name << " ";	//Write const value
 	}
 }
 

@@ -19,8 +19,8 @@ std::vector<Token*>& FirstPass::getTokens()							 { return tokens; }
 void FirstPass::makePass(std::vector<Token*>& tks){
 	tokens = tks;
 	writeTables();
-	printLabels();
-	printTables();
+	//printLabels();
+	//printTables();
 }
 
 bool FirstPass::isInteger(std::string s)

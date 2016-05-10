@@ -189,7 +189,7 @@ std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
 	removeEmptySpaces();
 	removeDirectivesEquIf();
 	removeEmptySpaces();
-	printStrings();
+	//printStrings();
 	return giveStringVector();
 }
 

@@ -24,6 +24,8 @@ set(SOURCES
 	source/syntactic_analyser.cpp
 	source/SemanticAnalyser.cpp
 	source/Synthesizer.cpp
+	source/Error.cpp
+	source/Linker.cpp
 	
 	
 	)

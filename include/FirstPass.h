@@ -20,7 +20,7 @@ struct SimbleTableElement {
 };
 
 struct DefinitionTableElement{
-	DefinitionTableElement(std::string s) : name(s), address(-1) {}
+	DefinitionTableElement(std::string s, int a = -1) : name(s), address(a) {}
 	std::string name;
 	int address;
 
