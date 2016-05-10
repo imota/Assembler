@@ -9,8 +9,10 @@ class KeyWords {
   public:
   	bool isValid(std::string name);
   	int numberOfOperands(std::string name);
+  	int opcode(std::string name);
   protected:
-  	std::unordered_map<std::string, int> map;
+  	std::unordered_map<std::string, int> name_to_nofoperands;
+  	std::unordered_map<std::string, int> name_to_opcode;
 };
 
 class Instructions : public KeyWords {
@@ -21,6 +23,12 @@ class Instructions : public KeyWords {
 class Directives : public KeyWords {
   public:
   	Directives();
+};
+
+class Opcodes : public KeyWords {
+public:
+	Opcodes();
+
 };
 
 #endif

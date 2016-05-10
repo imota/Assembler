@@ -1,37 +1,58 @@
 #include "keywords.h"
 
 bool KeyWords::isValid(std::string name) {
-	return map.find(name) != map.end();
+	return name_to_nofoperands.find(name) != name_to_nofoperands.end();
 }
 
 int KeyWords::numberOfOperands(std::string name) {
-	return map[name];
+	return name_to_nofoperands[name];
+}
+
+int KeyWords::opcode(std::string name){
+	return name_to_opcode[name];
 }
 
 Instructions::Instructions() {
-	map.emplace("ADD", 1);
-	map.emplace("SUB", 1);
-	map.emplace("MULT", 1);
-	map.emplace("DIV", 1);
-	map.emplace("JMP", 1);
-	map.emplace("JMPZ", 1);
-	map.emplace("JMPP", 1);
-	map.emplace("JMPN", 1);
-	map.emplace("STORE", 1);
-	map.emplace("LOAD", 1);
-	map.emplace("COPY", 2);
-	map.emplace("INPUT", 1);
-	map.emplace("OUTPUT", 1);
-	map.emplace("STOP", 0);
+	name_to_nofoperands.emplace("ADD", 1);
+	name_to_nofoperands.emplace("SUB", 1);
+	name_to_nofoperands.emplace("MULT", 1);
+	name_to_nofoperands.emplace("DIV", 1);
+	name_to_nofoperands.emplace("JMP", 1);
+	name_to_nofoperands.emplace("JMPZ", 1);
+	name_to_nofoperands.emplace("JMPP", 1);
+	name_to_nofoperands.emplace("JMPN", 1);
+	name_to_nofoperands.emplace("STORE", 1);
+	name_to_nofoperands.emplace("LOAD", 1);
+	name_to_nofoperands.emplace("COPY", 2);
+	name_to_nofoperands.emplace("INPUT", 1);
+	name_to_nofoperands.emplace("OUTPUT", 1);
+	name_to_nofoperands.emplace("STOP", 0);
 }
 
 Directives::Directives() {
-	map.emplace("BEGIN", 0);
-	map.emplace("END", 0);
-	map.emplace("EQU", 1);
-	map.emplace("SPACE", 1); //TODO: Use 0 as well
-	map.emplace("CONST", 1);
-	map.emplace("SECTION", 1);
-	map.emplace("PUBLIC", 1);
-	map.emplace("EXTERN", 0);
+	name_to_nofoperands.emplace("BEGIN", 0);
+	name_to_nofoperands.emplace("END", 0);
+	name_to_nofoperands.emplace("EQU", 1);
+	name_to_nofoperands.emplace("SPACE", 1); //TODO: Use 0 as well
+	name_to_nofoperands.emplace("CONST", 1);
+	name_to_nofoperands.emplace("SECTION", 1);
+	name_to_nofoperands.emplace("PUBLIC", 1);
+	name_to_nofoperands.emplace("EXTERN", 0);
+}
+
+Opcodes::Opcodes() {
+	name_to_opcode.emplace("ADD", 1);
+	name_to_opcode.emplace("SUB", 2);
+	name_to_opcode.emplace("MULT", 3);
+	name_to_opcode.emplace("DIV", 4);
+	name_to_opcode.emplace("JMP", 5);
+	name_to_opcode.emplace("JMPZ", 6);
+	name_to_opcode.emplace("JMPP", 7);
+	name_to_opcode.emplace("JMPN", 8);
+	name_to_opcode.emplace("STORE", 9);
+	name_to_opcode.emplace("LOAD", 10);
+	name_to_opcode.emplace("COPY", 11);
+	name_to_opcode.emplace("INPUT", 12);
+	name_to_opcode.emplace("OUTPUT", 13);
+	name_to_opcode.emplace("STOP", 14);
 }

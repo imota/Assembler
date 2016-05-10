@@ -63,7 +63,7 @@ int main() {
 	Synthesizer::instance().synthesize(SemanticAnalyser::instance().getTokens(), 
 									  SemanticAnalyser::instance().getSimbleTable(),
 									  SemanticAnalyser::instance().getDefinitionTable(), 
-									  SemanticAnalyser::instance().getUseTable());							  
+									  SemanticAnalyser::instance().getUseTable(), "../objfile.txt");							  
 
 	return 0;
 }
