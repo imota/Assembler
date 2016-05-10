@@ -13,8 +13,9 @@ STORE R
 DIV DOIS
 lol: store R +     1
 JMP L1
-ADD FLAG
-SUB FLAG
+COPY Y, R
+copy y, R
+copy y,    r 
 IF FLAG
 JMP LOL+2
 L3: SPACE 1
@@ -22,6 +23,7 @@ L3: SPACE 1
 
 SECTION			 DATA
 R: SPACE 2
+Y: SPACE 1
 DOIS: CONST 2
 ADD DOIS
 END

@@ -29,6 +29,7 @@ private:
 	std::string getLabelByValue(uint value);
 	bool isSectionText(std::string name);
 	bool isSectionData(std::string name);
+	bool isInteger(std::string s);
 
 	void checkSectionOrder();
 	void checkRepeatedLabels();

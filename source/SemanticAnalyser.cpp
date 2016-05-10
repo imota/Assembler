@@ -1,4 +1,5 @@
 #include<iostream>
+#include<sstream>
 #include "SemanticAnalyser.h"
 
 
@@ -89,14 +90,30 @@ void SemanticAnalyser::checkRepeatedLabels() {
 	}
 }
 
+//This method returns TRUE if a string only has numerical digits
+bool SemanticAnalyser::isInteger(std::string s)
+{
+   if(s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false ;
+
+   char * p ;
+   strtol(s.c_str(), &p, 10) ;
+
+   return (*p == 0) ;
+}
+
 //This method checks for labels used and Operands that were not defined
 void SemanticAnalyser::checkMissingLabels() {
 	for(Token*& tk : tokens){
-		if(tk->type == "OPERAND"){
-			std::cout << "[CheckMissingLabels]" << tk->type << std::endl;
+		if(tk->type == "OPERAND" and not isInteger(tk->name)){
+			std::string name_aux = tk->name;
+
+			size_t foundPlus = name_aux.find("+");
+			if(foundPlus != std::string::npos)
+				name_aux.erase(foundPlus, name_aux.size() - 1);
+
 			bool found = 0;
 			for(SimbleTableElement& st : simbleTable){
-				if(tk->name == st.name){
+				if(name_aux == st.name){
 					found = 1;
 					break;
 				}
