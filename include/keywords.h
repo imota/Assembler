@@ -8,14 +8,14 @@
 class KeyWords {
   public:
   	bool isValid(std::string name);
+  	int numberOfOperands(std::string name);
   protected:
-  	std::unordered_map<std::string, std::string> map;
+  	std::unordered_map<std::string, int> map;
 };
 
 class Instructions : public KeyWords {
   public:
   	Instructions();
-  	std::string getOpcode(std::string name);
 };
 
 class Directives : public KeyWords {

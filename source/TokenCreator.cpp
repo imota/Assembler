@@ -30,7 +30,7 @@ bool TokenCreator::isTokenValid(Token word) {
 }
 
 void TokenCreator::generateError(Token word) {
-	std::cout << "Invalid Token: " << word.name << " at line " << word.line_number << std::endl;
+	std::cout << "Invalid Token " << word.name << " at line " << word.line_number << std::endl;
 }
 
 bool TokenCreator::startsWithNumber(std::string token) {
@@ -92,7 +92,7 @@ Token TokenCreator::identifyTokenType(Token token) {
 	if (isLabel(token))
 		type = "LABEL";
 	else if (isInstruction(token))
-		type = "OPERATOR";
+		type = "INSTRUCTION";
 	else if(isDirective(token))
 		type = "DIRECTIVE";
 	else

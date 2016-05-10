@@ -5,7 +5,7 @@
 
 class Token {
   public:
-    Token(std::string name, int line_number, std::string type = "No type");
+    Token(std::string name, int line_number, std::string type = "INVALID");
     std::string Type();
     std::string name;
     int line_number;

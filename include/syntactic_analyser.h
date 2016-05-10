@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "token.h"
+#include "keywords.h"
 
 class SyntacticAnalyser {
   public:
@@ -11,6 +12,10 @@ class SyntacticAnalyser {
   private:
   	SyntacticAnalyser() {}
   	void analyseLine(std::vector<Token> line);
+
+  	std::vector<Token> removeLabelIfAny(std::vector<Token> line);
+  	int verifyNumberOfOperands(std::vector<Token> line);
+  	void verifyOperandsTypes(std::vector<Token> line);
 };
 
 #endif
