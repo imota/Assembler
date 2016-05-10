@@ -4,31 +4,34 @@ bool KeyWords::isValid(std::string name) {
 	return map.find(name) != map.end();
 }
 
-Instructions::Instructions() {
-	map.emplace("ADD", "01");
-	map.emplace("SUB", "02");
-	map.emplace("MULT", "03");
-	map.emplace("DIV", "04");
-	map.emplace("JMP", "05");
-	map.emplace("JMPZ", "06");
-	map.emplace("JMPP", "07");
-	map.emplace("JMPN", "08");
-	map.emplace("STORE", "09");
-	map.emplace("LOAD", "10");
-	map.emplace("COPY", "11");
-	map.emplace("INPUT", "12");
-	map.emplace("INPUT", "13");
-	map.emplace("STOP", "14");
-}
-
-std::string Instructions::getOpcode(std::string name) {
+int KeyWords::numberOfOperands(std::string name) {
 	return map[name];
 }
 
+Instructions::Instructions() {
+	map.emplace("ADD", 1);
+	map.emplace("SUB", 1);
+	map.emplace("MULT", 1);
+	map.emplace("DIV", 1);
+	map.emplace("JMP", 1);
+	map.emplace("JMPZ", 1);
+	map.emplace("JMPP", 1);
+	map.emplace("JMPN", 1);
+	map.emplace("STORE", 1);
+	map.emplace("LOAD", 1);
+	map.emplace("COPY", 2);
+	map.emplace("INPUT", 1);
+	map.emplace("OUTPUT", 1);
+	map.emplace("STOP", 0);
+}
+
 Directives::Directives() {
-	map.emplace("BEGIN", "0");
-	map.emplace("END", "0");
-	map.emplace("EQU", "1");
-	map.emplace("SPACE", "1"); //TODO: Use 0 as well
-	map.emplace("CONST", "1");
+	map.emplace("BEGIN", 0);
+	map.emplace("END", 0);
+	map.emplace("EQU", 1);
+	map.emplace("SPACE", 1); //TODO: Use 0 as well
+	map.emplace("CONST", 1);
+	map.emplace("SECTION", 1);
+	map.emplace("PUBLIC", 1);
+	map.emplace("EXTERN", 0);
 }
