@@ -23,6 +23,16 @@ void FirstPass::makePass(std::vector<Token*>& tks){
 	printTables();
 }
 
+bool FirstPass::isInteger(std::string s)
+{
+   if(s.empty() || ((!isdigit(s[0])) && (s[0] != '-') && (s[0] != '+'))) return false ;
+
+   char * p ;
+   strtol(s.c_str(), &p, 10) ;
+
+   return (*p == 0) ;
+}
+
 void FirstPass::writeTables(){
 
 	uint memCounter = 0;	//Counts the memory spaces
@@ -63,10 +73,14 @@ void FirstPass::writeTables(){
 		else if (countMem(tokens[i]->name)){	//If the element uses memory space
 			if(tokens[i]->name == "SPACE"){
 				if( i + 1 < tokens.size() ){
-					if( std::stoi(tokens[i+1]->name) > 0 ){
-						memCounter += std::stoi(tokens[i+1]->name); //Sums number of memory bytes it uses
-						i++;	//Dont analyse next token, it is a parameter for the directive SPACE
+					if(isInteger(tokens[i+1]->name)){
+						if( std::stoi(tokens[i+1]->name) > 0 ){
+							memCounter += std::stoi(tokens[i+1]->name); //Sums number of memory bytes it uses
+							i++;	//Dont analyse next token, it is a parameter for the directive SPACE
+						}
 					}
+					else
+						memCounter++;
 				}
 			}
 

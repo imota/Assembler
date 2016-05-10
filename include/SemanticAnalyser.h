@@ -31,6 +31,7 @@ private:
 	bool isSectionData(std::string name);
 	bool isInteger(std::string s);
 	void checkMemAddresses();
+	bool isUseTableElement(std::string label);
 
 	void checkSectionOrder();
 	void checkRepeatedLabels();

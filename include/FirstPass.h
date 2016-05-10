@@ -57,6 +57,7 @@ private:
 	bool countMem(std::string& name);
 	void defineUseTableValues();
 	void defineDefinitionTableValues();
+	bool isInteger(std::string s);
 
 };
 #endif

@@ -310,7 +310,13 @@ void SemanticAnalyser::checkMemAddresses() {
 			continue;
 		else if(tokens[i]->name == "SPACE"){
 			if(i+1 < tokens.size()){
-				for(int j = 0; j < std::stoi(tokens[i+1]->name); j++){
+				if(isInteger(tokens[i+1]->name)){
+					for(int j = 0; j < std::stoi(tokens[i+1]->name); j++){
+						spaceMem.push_back(memCounter);
+						memCounter++;
+					}
+				}
+				else{
 					spaceMem.push_back(memCounter);
 					memCounter++;
 				}
@@ -325,7 +331,7 @@ void SemanticAnalyser::checkMemAddresses() {
 	for(size_t i = 0; i+1 < tokens.size(); i++){
 		if(tokens[i]->name == "LOAD"){
 			int value = returnLabelValue(tokens[i+1]->name);
-			if(value < section_data_address)
+			if(value < section_data_address and not isUseTableElement(tokens[i+1]->name))
 				printError(tokens[i+1]->line_number, "CANNOT LOAD FROM A LABEL NOT DECLARED IN DATA SECTION");
 		}
 		else if(tokens[i]->name == "STORE"){
@@ -346,6 +352,15 @@ void SemanticAnalyser::checkMemAddresses() {
 		}
 		
 	}
+}
+
+bool SemanticAnalyser::isUseTableElement(std::string label){
+	for(UseTableElement& ut : useTable){
+		if(ut.name == label)
+			return 1;
+	}
+	return 0;
+
 }
 
 //This Method prints an error message
