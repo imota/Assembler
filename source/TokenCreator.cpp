@@ -30,7 +30,7 @@ bool TokenCreator::isTokenValid(Token word) {
 }
 
 void TokenCreator::generateError(Token word) {
-	std::cout << "Invalid Token " << word.name << " at line " << word.line_number << std::endl;
+	Error::instance().message(error_type, "Invalid token", word.line_number);
 }
 
 bool TokenCreator::startsWithNumber(std::string token) {

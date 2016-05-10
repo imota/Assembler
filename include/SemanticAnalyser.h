@@ -6,10 +6,10 @@
 #include<vector>
 #include "FirstPass.h"
 #include "token.h"
+#include "Error.h"
 
-class SemanticAnalyser{
+class SemanticAnalyser {
 public:
-
 	static SemanticAnalyser& instance();
 	~SemanticAnalyser() {}
 	void makeAnalysis(std::vector<Token*>& tks, std::vector<SimbleTableElement>& st,
@@ -48,8 +48,7 @@ private:
 
 
 	void printError(int line, std::string message, std::string errorType = "SEMANTIC");
-
-
+    std::string error_type = "Semantic";
 };
 
 

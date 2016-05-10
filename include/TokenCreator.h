@@ -6,6 +6,7 @@
 #include "LineOfFile.h"
 #include "token.h"
 #include "keywords.h"
+#include "Error.h"
 
 class TokenCreator {
   public:
@@ -24,6 +25,7 @@ class TokenCreator {
     bool isNumber(std::string token);
     bool isSpecialCharacter(char c);
     bool isValidSum(Token token);
+    std::string error_type = "Lexic";
 };
 
 #endif

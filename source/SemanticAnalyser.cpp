@@ -2,8 +2,6 @@
 #include<sstream>
 #include "SemanticAnalyser.h"
 
-
-
 SemanticAnalyser& SemanticAnalyser::instance() {
 	static SemanticAnalyser sa;
 	return sa;
@@ -61,24 +59,24 @@ void SemanticAnalyser::checkSectionOrder() {
 					text_found = 1;
 					number_sec_text++;
 					if(number_sec_text > 1)
-						printError(tokens[i+1]->line_number, "SECTION TEXT APPEARS MORE THAN ONCE");
+						Error::instance().message(error_type, "SECTION TEXT APPEARS MORE THAN ONCE", tokens[i+1]->line_number);
 				}
 				else if(tokens[i+1]->name == "DATA"){
 					data_found = 1;
 					number_sec_data++;
 					if(not text_found)
-						printError(tokens[i+1]->line_number, "SECTION DATA APPEARS BEFORE SECTION TEXT");
+						Error::instance().message(error_type, "SECTION DATA APPEARS BEFORE SECTION TEXT", tokens[i+1]->line_number);
 					if(number_sec_data > 1)
-						printError(tokens[i+1]->line_number, "SECTION DATA APPEARS MORE THAN ONCE");
+						Error::instance().message(error_type, "SECTION DATA APPEARS MORE THAN ONCE", tokens[i+1]->line_number);
 				}
 			}
 		}
 	}
 
 	if(not text_found)
-		printError(-1, "SECTION TEXT NOT SPECIFIED");
+		Error::instance().message(error_type, "SECTION TEXT NOT SPECIFIED");
 	if(not data_found)
-		printError(-1, "SECTION DATA NOT SPECIFIED");
+		Error::instance().message(error_type, "SECTION DATA NOT SPECIFIED");
 }
 
 //This method checks for labels declared more than once

@@ -34,7 +34,7 @@ void SyntacticAnalyser::analyseLine(std::vector<Token> line) {
 			verifyOperandsTypes(line);
 	}
 	else {
-		std::cout << "Missing Operand at " << line[0].line_number << std::endl;
+		Error::instance().message(error_type, "Wrong number of operands", line[0].line_number);
 	}
 }
 
@@ -49,7 +49,7 @@ std::vector<Token> SyntacticAnalyser::removeLabelIfAny(std::vector<Token> line) 
 void SyntacticAnalyser::checkForMoreLabels(std::vector<Token> line) {
 	for (int i=0;i<line.size();i++) {
 		if (line[i].type == "LABEL")
-			std::cout << "More than 1 label at " << line[0].line_number << std::endl;
+			Error::instance().message(error_type, "More than 1 label", line[0].line_number);
 	}
 }
 
@@ -65,7 +65,7 @@ int SyntacticAnalyser::verifyNumberOfOperands(std::vector<Token> line) {
 	}
 	
 	if (n_operands != k.numberOfOperands(line[0].name)) {
-		std::cout << "Wrong number of operands at " << line[0].line_number << std::endl;
+		Error::instance().message(error_type, "Wrong number of operands", line[0].line_number);
 		return -1;
 	}
 	return n_operands;
@@ -77,19 +77,19 @@ void SyntacticAnalyser::verifyOperandsTypes(std::vector<Token> line) {
 	for (int i=1; i<line.size(); i++) {
 		if (type == "INSTRUCTION") {
 				if (not(line[i].type == "OPERAND" and not isNumber(line[i].name)))
-					std::cout << "Wrong operator types at " << line[i].line_number << std::endl;
+					Error::instance().message(error_type, "Wrong operator types", line[0].line_number);
 		}
 		if (type == "DIRECTIVE") {
 				if (line[0].name == "SECTION") {
 					if (not (line[1].name == "TEXT" or line[1].name == "DATA"))
-						std::cout << "Not a valid section at " << line[i].line_number << std::endl;
+						Error::instance().message(error_type, "Not a valid section", line[0].line_number);
 				}
 				else if (line[0].name == "SPACE" or line[0].name == "CONST") {
 					if (not(isNumber(line[i].name))) 
-						std::cout << "Wrong operator types at " << line[i].line_number << std::endl;
+						Error::instance().message(error_type, "Wrong operator types", line[0].line_number);
 				}
 				else if (not(line[i].type == "OPERAND")) {
-					std::cout << "Wrong operator types at " << line[i].line_number << std::endl;
+					Error::instance().message(error_type, "Wrong operator types", line[0].line_number);
 				} 
 			}
 	}

@@ -4,6 +4,7 @@
 #include <vector>
 #include "token.h"
 #include "keywords.h"
+#include "Error.h"
 
 class SyntacticAnalyser {
   public:
@@ -17,6 +18,7 @@ class SyntacticAnalyser {
   	int verifyNumberOfOperands(std::vector<Token> line);
   	void verifyOperandsTypes(std::vector<Token> line);
   	void checkForMoreLabels(std::vector<Token> line);
+    std::string error_type = "Syntactic";
 };
 
 #endif
