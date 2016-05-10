@@ -30,6 +30,7 @@ void SemanticAnalyser::makeAnalysis(std::vector<Token*>& tks, std::vector<Simble
 	checkStop();
 	checkDivisionZero();
 	checkStoreToConst();
+	checkMemAddresses();
 }
 
 void SemanticAnalyser::removeSectionDirectives(){
@@ -298,6 +299,52 @@ void SemanticAnalyser::checkMisplacedDirectivesAndOperators(){
 				printError(tokens[i]->line_number, message);
 			}
 		}
+	}
+}
+
+void SemanticAnalyser::checkMemAddresses() {
+	std::vector<uint> spaceMem;
+	uint memCounter = 0;
+	for(size_t i = 0; i < tokens.size(); i++){
+		if(tokens[i]->name == "BEGIN" or tokens[i]->name == "END")
+			continue;
+		else if(tokens[i]->name == "SPACE"){
+			if(i+1 < tokens.size()){
+				for(int j = 0; j < std::stoi(tokens[i+1]->name); j++){
+					spaceMem.push_back(memCounter);
+					memCounter++;
+				}
+
+			}
+		}
+		else if(not isInteger(tokens[i]->name)){
+			memCounter++;
+		}
+	}
+
+	for(size_t i = 0; i+1 < tokens.size(); i++){
+		if(tokens[i]->name == "LOAD"){
+			int value = returnLabelValue(tokens[i+1]->name);
+			if(value < section_data_address)
+				printError(tokens[i+1]->line_number, "CANNOT LOAD FROM A LABEL NOT DECLARED IN DATA SECTION");
+		}
+		else if(tokens[i]->name == "STORE"){
+			int value = returnLabelValue(tokens[i+1]->name);
+			bool validSpace = 0;
+			for(uint space : spaceMem){
+				if(value == space){
+					validSpace = 1;
+					break;
+				}
+			}
+			if(not validSpace){
+				std::string message;
+				message.append(tokens[i+1]->name);
+				message.append(" DOES NOT POINT TO A RESERVED MEMORY ADDRESS");
+				printError(tokens[i+1]->line_number, message);
+			}
+		}
+		
 	}
 }
 

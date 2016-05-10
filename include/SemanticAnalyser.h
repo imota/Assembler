@@ -30,6 +30,7 @@ private:
 	bool isSectionText(std::string name);
 	bool isSectionData(std::string name);
 	bool isInteger(std::string s);
+	void checkMemAddresses();
 
 	void checkSectionOrder();
 	void checkRepeatedLabels();
