@@ -38,7 +38,8 @@ bool TokenCreator::startsWithNumber(std::string token) {
 }
 
 bool TokenCreator::isNumber(std::string token) {
-	for (int i=0;i<token.size();i++) 
+	int start = token[0] == '-' ? 1:0;
+	for (int i=start;i<token.size();i++) 
 		if (!isdigit(token[i]))
 			return false;
 	return true;

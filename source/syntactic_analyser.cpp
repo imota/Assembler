@@ -1,10 +1,15 @@
 #include "syntactic_analyser.h"
 
 bool isNumber(std::string token) {
-	for (int i=0;i<token.size();i++) 
+	int start = token[0] == '-' ? 1:0;
+	for (int i=start;i<token.size();i++) 
 		if (!isdigit(token[i]))
 			return false;
 	return true;
+}
+
+bool isNegative(std::string token) {
+	return (isNumber(token) and token[0] == '-');
 }
 
 SyntacticAnalyser& SyntacticAnalyser::instance() {
@@ -66,7 +71,7 @@ int SyntacticAnalyser::verifyNumberOfOperands(std::vector<Token> line) {
 	
 	if (n_operands != k.numberOfOperands(line[0].name)) {
 		Error::instance().message(error_type, "Wrong number of operands", line[0].line_number);
-		return -1;
+		return -1;	
 	}
 	return n_operands;
 }
@@ -87,6 +92,8 @@ void SyntacticAnalyser::verifyOperandsTypes(std::vector<Token> line) {
 				else if (line[0].name == "SPACE" or line[0].name == "CONST") {
 					if (not(isNumber(line[i].name))) 
 						Error::instance().message(error_type, "Wrong operator types", line[0].line_number);
+					else if (line[0].name == "SPACE" and isNegative(line[i].name))
+						Error::instance().message(error_type, "SPACE does not accept negative values", line[0].line_number);
 				}
 				else if (not(line[i].type == "OPERAND")) {
 					Error::instance().message(error_type, "Wrong operator types", line[0].line_number);
