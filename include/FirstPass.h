@@ -8,16 +8,21 @@
 #include "token.h"
 
 struct SimbleTableElement {
-	SimbleTableElement(std::string s, uint n, bool r) : name(s), value(n), relative(r) {}
+	SimbleTableElement(std::string s, uint n, bool r, uint l) : name(s), value(n), relative(r), line_number(l) {}
 	std::string name;
 	uint value;
 	bool relative;
+
+	//These values help with posterior operations
+	uint line_number;
+	bool isConst = 0;
+	float constValue = -1.5;
 };
 
 struct DefinitionTableElement{
-	DefinitionTableElement(std::string s, uint a) : name(s), address(a) {}
+	DefinitionTableElement(std::string s) : name(s), address(-1) {}
 	std::string name;
-	uint address;
+	int address;
 
 };
 
@@ -34,6 +39,7 @@ public:
 	std::vector<SimbleTableElement>& getSimbleTable();
 	std::vector<DefinitionTableElement>& getDefinitionTable();
 	std::vector<UseTableElement>& getUseTable();
+	std::vector<Token*>& getTokens();
 	void makePass(std::vector<Token*>& tks);
 
 
@@ -42,9 +48,15 @@ private:
 	std::vector<SimbleTableElement> simbleTable;
 	std::vector<DefinitionTableElement> definitionTable;
 	std::vector<UseTableElement> useTable;
+	std::vector<std::string> useNames;
 
 	FirstPass();
 	void writeTables();
+	void printLabels();
+	void printTables();
+	bool countMem(std::string& name);
+	void defineUseTableValues();
+	void defineDefinitionTableValues();
 
 };
 #endif
