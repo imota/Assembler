@@ -58,6 +58,11 @@ int SyntacticAnalyser::verifyNumberOfOperands(std::vector<Token> line) {
 	KeyWords k;
 	if ((line[0].type == "DIRECTIVE")) k = Directives();
 	else k = Instructions();
+
+	if (line[0].name == "SPACE") {
+		if (n_operands == 0)
+			return 0;
+	}
 	
 	if (n_operands != k.numberOfOperands(line[0].name)) {
 		std::cout << "Wrong number of operands at " << line[0].line_number << std::endl;
@@ -80,7 +85,7 @@ void SyntacticAnalyser::verifyOperandsTypes(std::vector<Token> line) {
 						std::cout << "Not a valid section at " << line[i].line_number << std::endl;
 				}
 				else if (line[0].name == "SPACE" or line[0].name == "CONST") {
-					if (not(isNumber(line[i].name)))
+					if (not(isNumber(line[i].name))) 
 						std::cout << "Wrong operator types at " << line[i].line_number << std::endl;
 				}
 				else if (not(line[i].type == "OPERAND")) {
