@@ -22,20 +22,23 @@ private:
 	std::vector<UseTableElement> useTable;
 	uint section_data_address = 0;
 
-	void checkSectionOrder();
-	void checkRepeatedLabels();
-
-	void checkMissingLabels();
-
 	void calculateSectionDataAddress();
-	void checkInvalidJump();
 	bool isJumpOperator(std::string name);
 	int returnLabelValue(std::string name);
-
+	void removeSectionDirectives();
 	std::string getLabelByValue(uint value);
+	bool isSectionText(std::string name);
+	bool isSectionData(std::string name);
+
+	void checkSectionOrder();
+	void checkRepeatedLabels();
+	void checkMissingLabels();
+	void checkInvalidJump();
 	void checkDivisionZero();
 	void checkStop();
 	void checkStoreToConst();
+	void checkMisplacedDirectivesAndOperators();
+
 
 	void printError(int line, std::string message, std::string errorType = "SEMANTIC");
 
