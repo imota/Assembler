@@ -22,6 +22,9 @@ set(SOURCES
 	source/parser.cpp
 	source/TokenCreator.cpp
 	source/syntactic_analyser.cpp
+	source/SemanticAnalyser.cpp
+	
+	
 	)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})

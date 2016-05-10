@@ -1,14 +1,17 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<sstream>
 #include "PreProcessor.h"
 #include "FirstPass.h"
 #include "parser.h"
 #include "token.h"
+#include "TokenCreator.h"
+#include "SemanticAnalyser.h"
 
 std::string chooseFile() {
 	int option;
-	std::cout << "Test file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n[4] ../TestFiles/naofaznada.asm\n[3] ../TestFiles/triangulo.asm\nOption: ";
+	std::cout << "Test file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n[3] ../TestFiles/triangulo.asm\n[4] ../TestFiles/naofaznada.asm\nOption: ";
 	std::cin >> option;
 	switch(option){
 		case 1:
@@ -31,12 +34,22 @@ int main() {
 	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 	std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
 
-	TokenCreator tc;
-
-	for (int i=0;i<parsed_str.size();i++) {
-		if (not tc.isTokenValid(parsed_str[i]))
-			std::cout << parsed_str[i].name << " - " << parsed_str[i].line_number << std::endl;
+	for(int i = 0; i < parsed_str.size(); i++) {
+		if(TokenCreator::instance().isTokenValid(parsed_str[i]))
+			parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i]);
+		else
+			TokenCreator::instance().generateError(parsed_str[i]);
 	}
+
+	std::vector<Token*> parsed;
+	for(size_t i = 0; i < parsed_str.size(); i++) { parsed.push_back(&parsed_str[i]); }
+	FirstPass::instance().makePass(parsed);
+
+	SemanticAnalyser::instance().makeAnalysis(FirstPass::instance().getTokens(), 
+											  FirstPass::instance().getSimbleTable(),
+											  FirstPass::instance().getDefinitionTable(), 
+											  FirstPass::instance().getUseTable());
+											  
 
 	return 0;
 }
