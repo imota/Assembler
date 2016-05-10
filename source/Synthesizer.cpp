@@ -17,6 +17,19 @@ void Synthesizer::synthesize(std::vector<Token*>& tks, std::vector<SimbleTableEl
 
 	std::cout << "LISTA SINTETIZADOR: " << std::endl;
 	printLabels();
+	checkErrors();
+	if(!error){
+
+	}
+	else{
+		std::cout << std::endl << "Program was not assembled due to errors" << std::endl;
+	}
+}
+
+void Synthesizer::checkErrors() {
+	/*
+	if() { error = 1; }
+	*/
 }
 
 void Synthesizer::printLabels() {

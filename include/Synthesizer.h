@@ -27,8 +27,10 @@ private:
 	std::vector<DefinitionTableElement> definitionTable;
 	std::vector<UseTableElement> useTable;
 	bool error = 0;
+	std::string outFileName;
 
 	void printLabels();
+	void checkErrors();
 };
 
 

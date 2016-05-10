@@ -12,7 +12,10 @@
 
 std::string chooseFile() {
 	int option;
-	std::cout << "Test file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n[3] ../TestFiles/triangulo.asm\n[4] ../TestFiles/naofaznada.asm\nOption: ";
+	std::string fname;
+	std::cout << "Test file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n"
+				"[3] ../TestFiles/triangulo.asm\n[4] ../TestFiles/naofaznada.asm\n"
+				"[5] ../TestFiles/zerinho.asm\n[6] Type in the file name\nOption: ";
 	std::cin >> option;
 	switch(option){
 		case 1:
@@ -23,6 +26,12 @@ std::string chooseFile() {
 			return "../TestFiles/triangulo.asm";
 		case 4:
 			return "../TestFiles/naofaznada.asm";
+		case 5:
+			return "../TestFiles/zerinho.asm";
+		case 6:
+			std::cin >> fname;
+			return fname;
+			break;
 		default:
 			std::cout << "Option not recognized. Program will close now.\n";
 			return "";
