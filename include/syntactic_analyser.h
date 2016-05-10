@@ -16,6 +16,7 @@ class SyntacticAnalyser {
   	std::vector<Token> removeLabelIfAny(std::vector<Token> line);
   	int verifyNumberOfOperands(std::vector<Token> line);
   	void verifyOperandsTypes(std::vector<Token> line);
+  	void checkForMoreLabels(std::vector<Token> line);
 };
 
 #endif

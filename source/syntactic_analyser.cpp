@@ -27,6 +27,7 @@ void SyntacticAnalyser::analyseText(std::vector<Token> text) {
 
 void SyntacticAnalyser::analyseLine(std::vector<Token> line) {
 	line = removeLabelIfAny(line);
+	checkForMoreLabels(line);
 
 	if (line[0].type == "DIRECTIVE" or line[0].type == "INSTRUCTION") {
 		if (verifyNumberOfOperands(line) >= 0 )
@@ -43,6 +44,13 @@ std::vector<Token> SyntacticAnalyser::removeLabelIfAny(std::vector<Token> line) 
 	for (int i=start;i<line.size();i++)
 		new_line.push_back(line[i]);
 	return new_line;
+}
+
+void SyntacticAnalyser::checkForMoreLabels(std::vector<Token> line) {
+	for (int i=0;i<line.size();i++) {
+		if (line[i].type == "LABEL")
+			std::cout << "More than 1 label at " << line[0].line_number << std::endl;
+	}
 }
 
 int SyntacticAnalyser::verifyNumberOfOperands(std::vector<Token> line) {
