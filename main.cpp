@@ -8,6 +8,7 @@
 #include "token.h"
 #include "TokenCreator.h"
 #include "SemanticAnalyser.h"
+#include "Synthesizer.h"
 
 std::string chooseFile() {
 	int option;
@@ -49,7 +50,11 @@ int main() {
 											  FirstPass::instance().getSimbleTable(),
 											  FirstPass::instance().getDefinitionTable(), 
 											  FirstPass::instance().getUseTable());
-											  
+	
+	Synthesizer::instance().synthesize(FirstPass::instance().getTokens(), 
+											  FirstPass::instance().getSimbleTable(),
+											  FirstPass::instance().getDefinitionTable(), 
+											  FirstPass::instance().getUseTable());							  
 
 	return 0;
 }

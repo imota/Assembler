@@ -23,6 +23,7 @@ set(SOURCES
 	source/TokenCreator.cpp
 	source/syntactic_analyser.cpp
 	source/SemanticAnalyser.cpp
+	source/Synthesizer.cpp
 	
 	
 	)
