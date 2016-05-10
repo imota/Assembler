@@ -31,6 +31,7 @@ private:
 	void removeDirectivesEquIf();
 	void removeEmptySpaces();
 	std::vector<LineOfFile>& giveStringVector();
+	void removeCommaCopy();
 
 };
 

@@ -169,10 +169,23 @@ void PreProcessor::removeDirectivesEquIf() {
 	}
 }
 
+void PreProcessor::removeCommaCopy(){
+	for(LineOfFile& element : preProcessed){
+		size_t found = element.line.find("COPY");
+		if(found != std::string::npos){		//if found COPY in line
+			size_t found2 = (element.line).find(",");
+			if(found2 != std::string::npos){
+				(element.line).erase(element.line.begin() + found2);
+			}
+		}
+	}
+}
+
 std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
 	this->frname = frname;
 	readFileToStrings();
 	removeComments();
+	removeCommaCopy();
 	removeEmptySpaces();
 	removeDirectivesEquIf();
 	removeEmptySpaces();
