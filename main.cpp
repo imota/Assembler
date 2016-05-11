@@ -98,6 +98,8 @@ int main() {
 										  SemanticAnalyser::instance().getSimbleTable(),
 										  SemanticAnalyser::instance().getDefinitionTable(), 
 										  SemanticAnalyser::instance().getUseTable(), chooseOutputFile());
+		
+		Error::instance().reset();
 	}
 
 	std::string str1, str2;
