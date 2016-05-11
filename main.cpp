@@ -71,7 +71,7 @@ int main() {
 	while(true){
 
 		frname = chooseInputFile();
-		if(frname == "") {return 0;}
+		if(frname == "") {break;}
 
 		std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 		std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
