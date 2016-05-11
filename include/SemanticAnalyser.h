@@ -45,6 +45,7 @@ private:
 	void checkStop();
 	void checkStoreToConst();
 	void checkMisplacedDirectivesAndOperators();
+	void checkNotDataLabel();
 
 
 	void printError(int line, std::string message, std::string errorType = "SEMANTIC");
