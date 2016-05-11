@@ -15,15 +15,15 @@ void Linker::linkFiles(std::string firstFile, std::string secondFile, std::strin
 
 	initModules();
 	checkForErrors();
-	//if(not Error::instance().error){
+	if(not Error::instance().error){
 		applyCorrectionFactor(mod_b);
 		buildGlobalDefinitionTable();
 		uniteCode();
 		applyUseTableCorrections();
 		writeToFile();
-	//}
-	//else
-		//std::cout << "Linking not completed due to errors\n";
+	}
+	else
+		std::cout << "Linking not completed due to errors\n";
 
 }
 
