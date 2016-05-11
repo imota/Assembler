@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+    cmake_minimum_required(VERSION 2.8)
 
 project(Tradutor)
 
@@ -26,8 +26,6 @@ set(SOURCES
 	source/Synthesizer.cpp
 	source/Error.cpp
 	source/Linker.cpp
-	
-	
 	)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})

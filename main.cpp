@@ -7,6 +7,7 @@
 #include "parser.h"
 #include "token.h"
 #include "TokenCreator.h"
+#include "syntactic_analyser.h"
 #include "SemanticAnalyser.h"
 #include "Synthesizer.h"
 #include "Linker.h"
@@ -67,11 +68,11 @@ bool chooseFilesToLink(std::string& str1, std::string& str2){
 
 int main() {
 	std::string frname;
-	//while(1){
+	while(true){
 
 		frname = chooseInputFile();
-		//if(frname == "") { break; }
 		if(frname == "") {return 0;}
+
 		std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 		std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
 
@@ -81,6 +82,8 @@ int main() {
 			else
 				TokenCreator::instance().generateError(parsed_str[i]);
 		}
+
+		SyntacticAnalyser::instance().analyseText(parsed_str);
 
 		std::vector<Token*> parsed;
 		for(size_t i = 0; i < parsed_str.size(); i++) { parsed.push_back(&parsed_str[i]); }
@@ -95,7 +98,7 @@ int main() {
 										  SemanticAnalyser::instance().getSimbleTable(),
 										  SemanticAnalyser::instance().getDefinitionTable(), 
 										  SemanticAnalyser::instance().getUseTable(), chooseOutputFile());
-	//}
+	}
 
 	std::string str1, str2;
 	if(chooseFilesToLink(str1, str2))
