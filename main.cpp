@@ -1,7 +1,8 @@
-#include<iostream>
-#include<fstream>
-#include<string>
-#include<sstream>
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <sstream>
+#include <algorithm>
 #include "PreProcessor.h"
 #include "FirstPass.h"
 #include "parser.h"
@@ -33,7 +34,6 @@ std::string chooseInputFile() {
 		case 6:
 			std::cin >> fname;
 			return fname;
-			break;
 		default:
 			std::cout << "No program assembled.\n";
 			return "";
@@ -44,8 +44,6 @@ std::string chooseOutputFile(){
 	std::string name;
 	std::cout << "Type the name of the output file: ";
 	std::cin >> name;
-	//std::string fname = "../";
-	//return fname.append(name);
 	return name;
 }
 
@@ -71,19 +69,33 @@ int main() {
 	while(true){
 
 		frname = chooseInputFile();
-		if(frname == "") {return 0;}
+		if(frname == "")
+			break;
 
 		std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 		std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
 
+		bool valid_line = true;
+		std::vector<int> invalid_line_n;
+
 		for(int i = 0; i < parsed_str.size(); i++) {
-			if(TokenCreator::instance().isTokenValid(parsed_str[i]))
+			if(TokenCreator::instance().isTokenValid(parsed_str[i])) {
 				parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i]);
-			else
+			}
+			else {
 				TokenCreator::instance().generateError(parsed_str[i]);
+				invalid_line_n.push_back(parsed_str[i].line_number);
+			}
 		}
 
-		SyntacticAnalyser::instance().analyseText(parsed_str);
+		for (int i=0;i<parsed_str.size();i++) {
+			if (std::find(invalid_line_n.begin(),invalid_line_n.end(),parsed_str[i].line_number) != invalid_line_n.end()) {
+				parsed_str.erase(parsed_str.begin() + i);
+				i--;
+			}
+		}
+
+		parsed_str = SyntacticAnalyser::instance().analyseText(parsed_str);
 
 		std::vector<Token*> parsed;
 		for(size_t i = 0; i < parsed_str.size(); i++) { parsed.push_back(&parsed_str[i]); }
@@ -98,6 +110,7 @@ int main() {
 										  SemanticAnalyser::instance().getSimbleTable(),
 										  SemanticAnalyser::instance().getDefinitionTable(), 
 										  SemanticAnalyser::instance().getUseTable(), chooseOutputFile());
+		Error::instance().reset();
 	}
 
 	std::string str1, str2;
