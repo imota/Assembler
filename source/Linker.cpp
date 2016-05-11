@@ -1,6 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include "Linker.h"
+#include "Error.h"
 
 Linker& Linker::instance() {
 	static Linker l;
@@ -13,11 +14,59 @@ void Linker::linkFiles(std::string firstFile, std::string secondFile, std::strin
 	fout_name = outfile;
 
 	initModules();
-	applyCorrectionFactor(mod_b);
-	buildGlobalDefinitionTable();
-	uniteCode();
-	applyUseTableCorrections();
-	writeToFile();
+	checkForErrors();
+	//if(not Error::instance().error){
+		applyCorrectionFactor(mod_b);
+		buildGlobalDefinitionTable();
+		uniteCode();
+		applyUseTableCorrections();
+		writeToFile();
+	//}
+	//else
+		//std::cout << "Linking not completed due to errors\n";
+
+}
+
+void Linker::checkForErrors() {
+	for(UseTableElement& ut : mod_a.useTable){
+		bool found = 0;
+		for(DefinitionTableElement dt : mod_b.definitionTable){
+			if(ut.name == dt.name)
+				found = 1;
+		}
+		if(!found){
+			std::string message;
+			message.append(ut.name);
+			message.append(" is used by first module and not defined by the second\n");
+			Error::instance().message("LINKING", message, -1);
+		}
+	}
+
+	for(UseTableElement& ut : mod_b.useTable){
+		bool found = 0;
+		for(DefinitionTableElement dt : mod_a.definitionTable){
+			if(ut.name == dt.name)
+				found = 1;
+		}
+		if(!found){
+			std::string message;
+			message.append(ut.name);
+			message.append(" is used by second module and not defined by the first\n");
+			Error::instance().message("LINKING", message, -1);
+		}
+	}
+
+	for(DefinitionTableElement& uta : mod_a.definitionTable){
+		for(DefinitionTableElement& utb : mod_b.definitionTable){
+			if(uta.name == utb.name){
+				std::string message;
+				message.append("Label ");
+				message.append(uta.name);
+				message.append(" is defined by both modules\n");
+				Error::instance().message("LINKING", message, -1);
+			}
+		}
+	}
 }
 
 void Linker::initModules(){

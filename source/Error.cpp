@@ -17,3 +17,7 @@ void Error::message(std::string type, std::string message, int line) {
 	std::cout <<  ": " << message << std::endl;
 	error = 1;
 }
+
+void Error::reset(){
+	error = 0;
+}

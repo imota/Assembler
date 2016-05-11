@@ -25,6 +25,7 @@ void SemanticAnalyser::makeAnalysis(std::vector<Token*>& tks, std::vector<Simble
 	checkMisplacedDirectivesAndOperators();
 	calculateSectionDataAddress();
 	checkInvalidJump();
+	checkNotDataLabel();
 	removeSectionDirectives();
 
 	checkRepeatedLabels();
@@ -177,6 +178,23 @@ void SemanticAnalyser::checkInvalidJump(){
 					std::string message;
 					message = "CANNOT JUMP TO ";
 					message.append(tokens[i+1]->name);
+					printError(tokens[i+1]->line_number, message);
+				}
+			}
+		}
+	}
+}
+
+//This method checks if a jump is being made to the data section
+void SemanticAnalyser::checkNotDataLabel(){
+	for(size_t i = 0; i < tokens.size(); i++){
+		if(not isJumpOperator(tokens[i]->name)){
+			if(i + 1 < tokens.size()){
+				int labelValue = returnLabelValue(tokens[i+1]->name);
+				if(labelValue < section_data_address){
+					std::string message;
+					message.append(tokens[i+1]->name);
+					message.append(" is a code label, and not a data label");
 					printError(tokens[i+1]->line_number, message);
 				}
 			}

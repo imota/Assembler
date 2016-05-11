@@ -36,6 +36,7 @@ private:
 	void uniteCode();
 	void applyUseTableCorrections();
 	void writeToFile();
+	void checkForErrors();
 };
 
 

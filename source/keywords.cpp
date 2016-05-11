@@ -46,12 +46,12 @@ Opcodes::Opcodes() {
 	name_to_opcode.emplace("MULT", 3);
 	name_to_opcode.emplace("DIV", 4);
 	name_to_opcode.emplace("JMP", 5);
-	name_to_opcode.emplace("JMPZ", 6);
+	name_to_opcode.emplace("JMPN", 6);
 	name_to_opcode.emplace("JMPP", 7);
-	name_to_opcode.emplace("JMPN", 8);
-	name_to_opcode.emplace("STORE", 9);
+	name_to_opcode.emplace("JMPZ", 8);
+	name_to_opcode.emplace("COPY", 9);
 	name_to_opcode.emplace("LOAD", 10);
-	name_to_opcode.emplace("COPY", 11);
+	name_to_opcode.emplace("STORE", 11);
 	name_to_opcode.emplace("INPUT", 12);
 	name_to_opcode.emplace("OUTPUT", 13);
 	name_to_opcode.emplace("STOP", 14);
