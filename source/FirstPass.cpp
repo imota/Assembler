@@ -17,12 +17,14 @@ std::vector<UseTableElement>& FirstPass::getUseTable() 				 { return useTable; }
 std::vector<Token*>& FirstPass::getTokens()							 { return tokens; }
 
 void FirstPass::makePass(std::vector<Token*>& tks){
+
 	simbleTable.clear();
 	definitionTable.clear();
 	useTable.clear();
 	useNames.clear();
 
 	tokens = tks;
+
 	//printLabels();
 	writeTables();
 	//printLabels();
@@ -153,12 +155,13 @@ bool FirstPass::countMem(std::string& name) {
 
 void FirstPass::defineUseTableValues(){
 	for(std::string& str : useNames){
-		for(Token*& tk : tokens){
-			size_t found = tk->name.find("+");
+		for(Token* tk : tokens){
+			std::string aux = tk->name;
+			size_t found = aux.find("+");
 			if(found != std::string::npos)
-				tk->name.erase(found, tk->name.size() - 1);
-			if(str == tk->name){
-				UseTableElement newUseElement(tk->name, tk->memAddress);
+				aux.erase(found, aux.size() - 1);
+			if(str == aux){
+				UseTableElement newUseElement(aux, tk->memAddress);
 				useTable.push_back(newUseElement);
 			}
 		}
