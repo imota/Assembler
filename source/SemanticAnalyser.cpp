@@ -191,7 +191,7 @@ void SemanticAnalyser::checkNotDataLabel(){
 		if(not isJumpOperator(tokens[i]->name)){
 			if(i + 1 < tokens.size()){
 				int labelValue = returnLabelValue(tokens[i+1]->name);
-				if(labelValue < section_data_address){
+				if( labelValue < section_data_address and not isUseTableElement(tokens[i+1]->name) ){
 					std::string message;
 					message.append(tokens[i+1]->name);
 					message.append(" is a code label, and not a data label");
@@ -376,6 +376,9 @@ void SemanticAnalyser::checkMemAddresses() {
 }
 
 bool SemanticAnalyser::isUseTableElement(std::string label){
+	size_t found = label.find("+");
+	if(found != std::string::npos)
+		label.erase(found, label.size() - 1);
 	for(UseTableElement& ut : useTable){
 		if(ut.name == label)
 			return 1;

@@ -122,8 +122,12 @@ void Synthesizer::writeCode(std::ofstream& myfile) {
 		else if(tokens[i]->type == "OPERAND")
 			myfile << returnLabelValue(tokens[i]->name) << " ";
 		else if(tokens[i]->name == "SPACE"){
-			if( isInteger(tokens[i+1]->name) ){
-				for(size_t j = 0; j < std::stoi(tokens[i+1]->name); j++)	//Write as many zeros as there are reserved spaces
+			if(i + 1 < tokens.size()){
+				if( isInteger(tokens[i+1]->name) ){
+					for(size_t j = 0; j < std::stoi(tokens[i+1]->name); j++)	//Write as many zeros as there are reserved spaces
+						myfile << "0 ";
+				}
+				else
 					myfile << "0 ";
 			}
 			else
@@ -137,8 +141,9 @@ void Synthesizer::writeCode(std::ofstream& myfile) {
 void Synthesizer::writeToFile() {
 	std::ofstream myfile;
 	myfile.open(outFileName);
-	if(isModule())
+	if(isModule()){
 		writeTables(myfile);
+	}
 	writeCode(myfile);
 	myfile.close();
 }

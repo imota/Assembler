@@ -23,6 +23,7 @@ void FirstPass::makePass(std::vector<Token*>& tks){
 	useNames.clear();
 
 	tokens = tks;
+	//printLabels();
 	writeTables();
 	//printLabels();
 	//printTables();
@@ -153,6 +154,9 @@ bool FirstPass::countMem(std::string& name) {
 void FirstPass::defineUseTableValues(){
 	for(std::string& str : useNames){
 		for(Token*& tk : tokens){
+			size_t found = tk->name.find("+");
+			if(found != std::string::npos)
+				tk->name.erase(found, tk->name.size() - 1);
 			if(str == tk->name){
 				UseTableElement newUseElement(tk->name, tk->memAddress);
 				useTable.push_back(newUseElement);
