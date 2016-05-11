@@ -11,9 +11,6 @@
 #include "TokenCreator.h"
 #include "SemanticAnalyser.h"
 
-
-
-
 class Synthesizer{
 public:
 	static Synthesizer& instance();

@@ -17,30 +17,43 @@ SyntacticAnalyser& SyntacticAnalyser::instance() {
 	return sa;
 }
 
-void SyntacticAnalyser::analyseText(std::vector<Token> text) {
+std::vector<Token> SyntacticAnalyser::analyseText(std::vector<Token> text) {
+	std::vector<Token> new_text;
 	std::vector<Token> line;
 	for (int i=0; i<text.size()-1; i++) {
 		line.push_back(text[i]);
 		if (text[i].line_number != text[i+1].line_number) {
-			analyseLine(line);
+			if (analyseLine(line))
+				new_text.insert(new_text.end(), line.begin(), line.end());
 			line.clear();
 		}
 	}
 	line.push_back(text[text.size()-1]);
-	analyseLine(line);
+	if (analyseLine(line))
+		new_text.insert(new_text.end(), line.begin(), line.end());
+
+	return new_text;
 }
 
-void SyntacticAnalyser::analyseLine(std::vector<Token> line) {
+bool SyntacticAnalyser::analyseLine(std::vector<Token> line) {
 	line = removeLabelIfAny(line);
-	checkForMoreLabels(line);
+	if (checkForMoreLabels(line))
+		return false;
 
 	if (line[0].type == "DIRECTIVE" or line[0].type == "INSTRUCTION") {
-		if (verifyNumberOfOperands(line) >= 0 )
-			verifyOperandsTypes(line);
+		if (verifyNumberOfOperands(line) >= 0 ) {
+			if  (not verifyOperandsTypes(line))
+				return false;
+		}
+		else {
+			Error::instance().message(error_type, "Wrong number of operands", line[0].line_number);
+			return false;
+		}
 	}
-	else {
-		Error::instance().message(error_type, "Wrong number of operands", line[0].line_number);
-	}
+	else
+		return false;
+	
+	return true;
 }
 
 std::vector<Token> SyntacticAnalyser::removeLabelIfAny(std::vector<Token> line) {
@@ -51,11 +64,14 @@ std::vector<Token> SyntacticAnalyser::removeLabelIfAny(std::vector<Token> line) 
 	return new_line;
 }
 
-void SyntacticAnalyser::checkForMoreLabels(std::vector<Token> line) {
+bool SyntacticAnalyser::checkForMoreLabels(std::vector<Token> line) {
 	for (int i=0;i<line.size();i++) {
-		if (line[i].type == "LABEL")
+		if (line[i].type == "LABEL") {
 			Error::instance().message(error_type, "More than 1 label", line[0].line_number);
+			return true;
+		}
 	}
+	return false;
 }
 
 int SyntacticAnalyser::verifyNumberOfOperands(std::vector<Token> line) {
@@ -70,34 +86,43 @@ int SyntacticAnalyser::verifyNumberOfOperands(std::vector<Token> line) {
 	}
 	
 	if (n_operands != k.numberOfOperands(line[0].name)) {
-		Error::instance().message(error_type, "Wrong number of operands", line[0].line_number);
 		return -1;	
 	}
 	return n_operands;
 }
 
-void SyntacticAnalyser::verifyOperandsTypes(std::vector<Token> line) {
+bool SyntacticAnalyser::verifyOperandsTypes(std::vector<Token> line) {
 	std::string type = line[0].type;
 
 	for (int i=1; i<line.size(); i++) {
 		if (type == "INSTRUCTION") {
-				if (not(line[i].type == "OPERAND" and not isNumber(line[i].name)))
+				if (not(line[i].type == "OPERAND" and not isNumber(line[i].name))) {
 					Error::instance().message(error_type, "Wrong operator types", line[0].line_number);
+					return false;
+				}
 		}
 		if (type == "DIRECTIVE") {
 				if (line[0].name == "SECTION") {
-					if (not (line[1].name == "TEXT" or line[1].name == "DATA"))
+					if (not (line[1].name == "TEXT" or line[1].name == "DATA")) {
 						Error::instance().message(error_type, "Not a valid section", line[0].line_number);
+						return false;
+					}
 				}
 				else if (line[0].name == "SPACE" or line[0].name == "CONST") {
-					if (not(isNumber(line[i].name))) 
+					if (not(isNumber(line[i].name))) {
 						Error::instance().message(error_type, "Wrong operator types", line[0].line_number);
-					else if (line[0].name == "SPACE" and isNegative(line[i].name))
+						return false;
+					}
+					else if (line[0].name == "SPACE" and isNegative(line[i].name)) {
 						Error::instance().message(error_type, "SPACE does not accept negative values", line[0].line_number);
+						return false;
+					}
 				}
 				else if (not(line[i].type == "OPERAND")) {
 					Error::instance().message(error_type, "Wrong operator types", line[0].line_number);
+					return false;
 				} 
 			}
 	}
+	return true;
 }	

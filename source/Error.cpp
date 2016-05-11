@@ -5,6 +5,10 @@ Error& Error::instance() {
 	return e;
 }
 
+void Error::reset() { 
+	error = 0;
+}
+
 void Error::message(std::string type, std::string message, int line) {
 	std::cout << type;
 	std::cout << " error";

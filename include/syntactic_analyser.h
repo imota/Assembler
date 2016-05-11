@@ -9,15 +9,15 @@
 class SyntacticAnalyser {
   public:
   	static SyntacticAnalyser& instance();
-  	void analyseText(std::vector<Token> text);
+  	std::vector<Token> analyseText(std::vector<Token> text);
   private:
   	SyntacticAnalyser() {}
-  	void analyseLine(std::vector<Token> line);
+  	bool analyseLine(std::vector<Token> line);
 
   	std::vector<Token> removeLabelIfAny(std::vector<Token> line);
   	int verifyNumberOfOperands(std::vector<Token> line);
-  	void verifyOperandsTypes(std::vector<Token> line);
-  	void checkForMoreLabels(std::vector<Token> line);
+  	bool verifyOperandsTypes(std::vector<Token> line);
+  	bool checkForMoreLabels(std::vector<Token> line);
     std::string error_type = "Syntactic";
 };
 
