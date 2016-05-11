@@ -16,22 +16,10 @@
 std::string chooseInputFile() {
 	int option;
 	std::string fname;
-	std::cout << "Assemble file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n"
-				"[3] ../TestFiles/triangulo.asm\n[4] ../TestFiles/naofaznada.asm\n"
-				"[5] ../TestFiles/zerinho.asm\n[6] Type in the file name\n[0] Go to Linking menu\nOption: ";
+	std::cout << "Assemble file: \n[1] Type in the file name\n[2] Go to Linking menu\nOption: ";
 	std::cin >> option;
 	switch(option){
 		case 1:
-			return "../TestFiles/moda.asm";
-		case 2:
-			return "../TestFiles/modb.asm";
-		case 3:
-			return "../TestFiles/triangulo.asm";
-		case 4:
-			return "../TestFiles/naofaznada.asm";
-		case 5:
-			return "../TestFiles/zerinho.asm";
-		case 6:
 			std::cin >> fname;
 			return fname;
 		default:
@@ -44,6 +32,7 @@ std::string chooseOutputFile(){
 	std::string name;
 	std::cout << "Type the name of the output file: ";
 	std::cin >> name;
+	name.insert(0, "../assembled/");
 	return name;
 }
 
@@ -61,6 +50,8 @@ bool chooseFilesToLink(std::string& str1, std::string& str2){
 		std::cout << "No files linked\n";
 		return 0;
 	}
+	str1.insert(0, "../assembled/");
+	str2.insert(0, "../assembled/");
 	return 1;
 }
 
@@ -71,6 +62,8 @@ int main() {
 		frname = chooseInputFile();
 		if(frname == "")
 			break;
+		frname.append(".asm");
+		frname.insert(0, "../files/");
 
 		std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 		std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
