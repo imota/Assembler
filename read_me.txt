@@ -11,7 +11,7 @@ Instruções de utilização
 		1 Digitar o nome do arquivo que deseja montar sem a extensão do arquivo. Os arquivos gerados estarão na pasta assembled (cd ../assembled)
 		2 Ir para o menu de ligação
 
-	No menu de ligação, será lhe pedido o nome do primeiro e segundo arquivos que deseja ligar e o nome do arquivo que deseja gerar.
+	No menu de ligação, será lhe pedido o nome do primeiro e segundo arquivos que deseja ligar e o nome do arquivo que deseja gerar. Os arquivos estarão na pasta assembled, e o resultado da ligação será colocado nesta mesma pasta.
 
 
 Instruções de compilação (Linux com cmake recente versão 2.8 ou acima)
