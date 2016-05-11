@@ -24,7 +24,7 @@ void Linker::initModules(){
 	readModule(mod_a);
 	readModule(mod_b);
 	mod_a.correction_factor = 0;
-	mod_b.correction_factor = 1 + mod_a.code.size();
+	mod_b.correction_factor = mod_a.code.size();
 }
 
 void Linker::readModule(Module& mod){
