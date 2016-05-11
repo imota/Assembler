@@ -17,6 +17,11 @@ std::vector<UseTableElement>& FirstPass::getUseTable() 				 { return useTable; }
 std::vector<Token*>& FirstPass::getTokens()							 { return tokens; }
 
 void FirstPass::makePass(std::vector<Token*>& tks){
+	simbleTable.clear();
+	definitionTable.clear();
+	useTable.clear();
+	useNames.clear();
+
 	tokens = tks;
 	writeTables();
 	//printLabels();

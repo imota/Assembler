@@ -182,6 +182,9 @@ void PreProcessor::removeCommaCopy(){
 }
 
 std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
+	preProcessed.clear();
+	definedLabels.clear();
+
 	this->frname = frname;
 	readFileToStrings();
 	removeComments();
