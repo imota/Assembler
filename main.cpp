@@ -83,7 +83,7 @@ int main() {
 				TokenCreator::instance().generateError(parsed_str[i]);
 		}
 
-		//SyntacticAnalyser::instance().analyseText(parsed_str);
+		SyntacticAnalyser::instance().analyseText(parsed_str);
 
 		std::vector<Token*> parsed;
 		for(size_t i = 0; i < parsed_str.size(); i++) { parsed.push_back(&parsed_str[i]); }
