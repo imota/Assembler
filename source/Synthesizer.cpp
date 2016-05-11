@@ -19,6 +19,7 @@ void Synthesizer::synthesize(std::vector<Token*>& tks, std::vector<SimbleTableEl
 	definitionTable = dt;
 	useTable = ut;
 	outFileName = fname;
+	relatives.clear();
 
 	checkErrors();
 	if(!error){
@@ -84,7 +85,11 @@ void Synthesizer::getRelativeMemAddresses(){
 			break;
 		bool isRelative = 0;
 		for(std::string r : relativeLabels){
-			if(r == tokens[i]->name)
+			std::string aux = tokens[i]->name;
+			size_t found = aux.find("+");
+			if(found != std::string::npos)
+				aux.erase(found, aux.size() - 1);
+			if(r == aux)
 				isRelative = 1;
 		}
 		if(isRelative)
@@ -119,8 +124,9 @@ void Synthesizer::writeCode(std::ofstream& myfile) {
 			continue;
 		else if(tokens[i]->type == "INSTRUCTION")
 			myfile << hash.opcode(tokens[i]->name) << " ";
-		else if(tokens[i]->type == "OPERAND")
+		else if(tokens[i]->type == "OPERAND"){
 			myfile << returnLabelValue(tokens[i]->name) << " ";
+		}
 		else if(tokens[i]->name == "SPACE"){
 			if(i + 1 < tokens.size()){
 				if( isInteger(tokens[i+1]->name) ){
