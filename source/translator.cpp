@@ -22,7 +22,7 @@ std::vector<Token> Translator::translateToken(Token original_token) {
 	else if (Instructions(Invented).isValid(original_token.name))
 		translation = Instructions(IA32).inventedToIA32(original_token.name);
 	else if (Directives(Invented).isValid(original_token.name))
-		translation = Instructions(IA32).inventedToIA32(original_token.name);
+		translation = Directives(IA32).inventedToIA32(original_token.name);
 
 
 	for (int i=0;i<translation.size();i++)
