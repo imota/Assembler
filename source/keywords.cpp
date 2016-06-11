@@ -19,6 +19,10 @@ void KeyWords::createMap(assembly_language language) {
 		createIA32();	
 }
 
+std::vector<std::string> KeyWords::inventedToIA32(std::string name) {
+	return invented_to_IA32[name];
+}
+
 Instructions::Instructions(assembly_language language) {
 	createMap(language);
 }

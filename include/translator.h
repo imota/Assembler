@@ -3,12 +3,13 @@
 
 #include <vector>
 #include "token.h"
+#include "keywords.h"
 
 class Translator {
   public:
   	void translate(std::vector<Token> original_code);
   private:
-  	std::vector<Token> translateToken(Token original_token);
+  	std::vector<std::string> translateToken(Token original_token);
 };
 
 #endif

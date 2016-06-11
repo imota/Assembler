@@ -15,6 +15,7 @@ class KeyWords {
   public:
   	bool isValid(std::string name);
   	int numberOfOperands(std::string name);
+    std::vector<std::string> inventedToIA32(std::string name);
   	int opcode(std::string name);
   protected:
   	std::unordered_map<std::string, int> name_to_nofoperands;
