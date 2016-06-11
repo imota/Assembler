@@ -2,8 +2,8 @@
 #define TRAB1_SB_ZAGO_ICARO_TOKEN_CREATOR
 
 #include <iostream>
-#include "token.h"
 #include "keywords.h"
+#include "token.h"
 
 class TokenCreator {
   public:

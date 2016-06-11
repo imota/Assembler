@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <vector>
 
 enum assembly_language {
   IA32,
@@ -18,6 +19,8 @@ class KeyWords {
   protected:
   	std::unordered_map<std::string, int> name_to_nofoperands;
   	std::unordered_map<std::string, int> name_to_opcode;
+
+    std::unordered_map<std::string, std::vector<std::string>> invented_to_IA32;
 
     void createMap(assembly_language language);
     virtual void createIA32() = 0;

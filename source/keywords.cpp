@@ -13,10 +13,10 @@ int KeyWords::opcode(std::string name){
 }
 
 void KeyWords::createMap(assembly_language language) {
-	if (language == IA32) 
-		createIA32();	
 	if (language == Invented)
 		createInventedAssembly();
+	if (language == IA32)
+		createIA32();	
 }
 
 Instructions::Instructions(assembly_language language) {
@@ -40,7 +40,27 @@ void Instructions::createInventedAssembly() {
 	name_to_nofoperands.emplace("STOP", 0);	
 }
 
-void Instructions::createIA32() {}
+void Instructions::createIA32() {
+	name_to_nofoperands.emplace("ADD", 2);
+	name_to_nofoperands.emplace("SUB", 2);
+	name_to_nofoperands.emplace("MULT", 2);
+	name_to_nofoperands.emplace("DIV", 2);
+	name_to_nofoperands.emplace("CMP", 2);
+	name_to_nofoperands.emplace("JE", 1);
+	name_to_nofoperands.emplace("JG", 1);
+	name_to_nofoperands.emplace("JL", 1);
+	name_to_nofoperands.emplace("MOV", 2);
+
+	invented_to_IA32.emplace("ADD", std::vector<std::string>({"ADD", "EAX"}));
+	invented_to_IA32.emplace("SUB", std::vector<std::string>({"SUB", "EAX"}));
+	invented_to_IA32.emplace("MUL", std::vector<std::string>({"MULT", "EAX"}));
+	invented_to_IA32.emplace("DIV", std::vector<std::string>({"SUB", "EDX", "EDX", "DIV", "EAX"}));
+	invented_to_IA32.emplace("JMP", std::vector<std::string>({"JMP"}));
+	invented_to_IA32.emplace("JMPZ", std::vector<std::string>({"CMP", "EAX", "0", "JE"}));
+	invented_to_IA32.emplace("JMPP", std::vector<std::string>({"CMP", "EAX", "0", "JG"}));
+	invented_to_IA32.emplace("JMPN", std::vector<std::string>({"CMP", "EAX", "0", "JL"}));
+	invented_to_IA32.emplace("LOAD", std::vector<std::string>({"MOV", "EAX"}));
+}
 
 Directives::Directives(assembly_language language) {
 	createMap(language);
