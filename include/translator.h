@@ -7,9 +7,9 @@
 
 class Translator {
   public:
-  	void translate(std::vector<Token> original_code);
+  	std::vector<Token> translate(std::vector<Token> original_code);
   private:
-  	std::vector<std::string> translateToken(Token original_token);
+  	std::vector<Token> translateToken(Token original_token);
 };
 
 #endif

@@ -9,12 +9,15 @@ class TokenCreator {
   public:
   	static TokenCreator& instance();
 
-  	Token identifyTokenType(Token token); //ok
+  	Token identifyTokenType(Token token, assembly_language language); //ok
   private:
     TokenCreator() {}
   	bool isLabel(Token token); //ok
   	bool isInstruction(Token token);
   	bool isDirective(Token token);
+    bool isMemoryAddress(Token token);
+
+    assembly_language language;
 };
 
 class IA32_TokenCreator : TokenCreator {
