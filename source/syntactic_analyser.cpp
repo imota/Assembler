@@ -77,8 +77,8 @@ bool SyntacticAnalyser::checkForMoreLabels(std::vector<Token> line) {
 int SyntacticAnalyser::verifyNumberOfOperands(std::vector<Token> line) {
 	int n_operands = line.size()-1;
 	KeyWords *k;
-	if ((line[0].type == "DIRECTIVE")) k = new Directives();
-	else k = new Instructions();
+	if ((line[0].type == "DIRECTIVE")) k = new Directives(Invented);
+	else k = new Instructions(Invented);
 
 	if (line[0].name == "SPACE") {
 		if (n_operands == 0)

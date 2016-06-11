@@ -12,8 +12,15 @@ int KeyWords::opcode(std::string name){
 	return name_to_opcode[name];
 }
 
-Instructions::Instructions() {
-	createInventedAssembly();
+void KeyWords::createMap(assembly_language language) {
+	if (language == IA32) 
+		createIA32();	
+	if (language == Invented)
+		createInventedAssembly();
+}
+
+Instructions::Instructions(assembly_language language) {
+	createMap(language);
 }
 
 void Instructions::createInventedAssembly() {
@@ -35,8 +42,8 @@ void Instructions::createInventedAssembly() {
 
 void Instructions::createIA32() {}
 
-Directives::Directives() {
-	createInventedAssembly();
+Directives::Directives(assembly_language language) {
+	createMap(language);
 }
 
 void Directives::createInventedAssembly() {
@@ -52,8 +59,8 @@ void Directives::createInventedAssembly() {
 
 void Directives::createIA32() {}
 
-Opcodes::Opcodes() {
-
+Opcodes::Opcodes(assembly_language language) {
+	createMap(language);
 }
 
 void Opcodes::createInventedAssembly() {

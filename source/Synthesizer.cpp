@@ -118,7 +118,7 @@ void Synthesizer::writeTables(std::ofstream& myfile) {
 }
 
 void Synthesizer::writeCode(std::ofstream& myfile) {
-	Opcodes hash;
+	Opcodes hash(Invented);
 	for(size_t i = 0; i < tokens.size(); i++){
 		if(tokens[i]->name == "BEGIN" or tokens[i]->name == "END" or isInteger(tokens[i]->name))
 			continue;

@@ -1,6 +1,5 @@
 #include "TokenCreator.h"
 
-//----------------- Token Creator ------------------
 TokenCreator& TokenCreator::instance() {
 	static TokenCreator tc;
 	return tc;
@@ -11,11 +10,11 @@ bool TokenCreator::isLabel(Token token) {
 }
 
 bool TokenCreator::isInstruction(Token token) {
-	return Instructions().isValid(token.name);
+	return Instructions(Invented).isValid(token.name);
 }
 
 bool TokenCreator::isDirective(Token token) {
-	return Directives().isValid(token.name);;
+	return Directives(Invented).isValid(token.name);;
 }
 
 Token TokenCreator::identifyTokenType(Token token) {

@@ -5,6 +5,11 @@
 #include <string>
 #include <unordered_map>
 
+enum assembly_language {
+  IA32,
+  Invented
+};
+
 class KeyWords {
   public:
   	bool isValid(std::string name);
@@ -14,13 +19,14 @@ class KeyWords {
   	std::unordered_map<std::string, int> name_to_nofoperands;
   	std::unordered_map<std::string, int> name_to_opcode;
 
+    void createMap(assembly_language language);
     virtual void createIA32() = 0;
     virtual void createInventedAssembly() = 0;
 };
 
 class Instructions : public KeyWords {
   public:
-  	Instructions();
+  	Instructions(assembly_language language);
   private:
     void createIA32();
     void createInventedAssembly();
@@ -28,7 +34,7 @@ class Instructions : public KeyWords {
 
 class Directives : public KeyWords {
   public:
-  	Directives();
+  	Directives(assembly_language language);
   private:
     void createIA32();
     void createInventedAssembly();
@@ -36,7 +42,7 @@ class Directives : public KeyWords {
 
 class Opcodes : public KeyWords {
   public:
-    Opcodes();
+    Opcodes(assembly_language language);
   private:
     void createIA32();
     void createInventedAssembly();
