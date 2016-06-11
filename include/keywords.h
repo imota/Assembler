@@ -13,22 +13,33 @@ class KeyWords {
   protected:
   	std::unordered_map<std::string, int> name_to_nofoperands;
   	std::unordered_map<std::string, int> name_to_opcode;
+
+    virtual void createIA32() = 0;
+    virtual void createInventedAssembly() = 0;
 };
 
 class Instructions : public KeyWords {
   public:
   	Instructions();
+  private:
+    void createIA32();
+    void createInventedAssembly();
 };
 
 class Directives : public KeyWords {
   public:
   	Directives();
+  private:
+    void createIA32();
+    void createInventedAssembly();
 };
 
 class Opcodes : public KeyWords {
-public:
-	Opcodes();
-
+  public:
+    Opcodes();
+  private:
+    void createIA32();
+    void createInventedAssembly();
 };
 
 #endif

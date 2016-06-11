@@ -2,8 +2,6 @@
 #define TRAB1_SB_ZAGO_ICARO_TOKEN_CREATOR
 
 #include <iostream>
-#include <vector>
-#include "LineOfFile.h"
 #include "token.h"
 #include "keywords.h"
 
@@ -11,10 +9,10 @@ class TokenCreator {
   public:
   	static TokenCreator& instance();
 
-  	Token identifyTokenType(Token token);
+  	Token identifyTokenType(Token token); //ok
   private:
     TokenCreator() {}
-  	bool isLabel(Token token);
+  	bool isLabel(Token token); //ok
   	bool isInstruction(Token token);
   	bool isDirective(Token token);
 };

@@ -81,10 +81,6 @@ SemanticAnalyser.h
 ../include/TokenCreator.h
 iostream
 -
-vector
--
-LineOfFile.h
-../include/LineOfFile.h
 token.h
 ../include/token.h
 keywords.h
@@ -141,18 +137,8 @@ FirstPass.h
 /home/icaro/Assembler/FirstPass.h
 parser.h
 /home/icaro/Assembler/parser.h
-token.h
-/home/icaro/Assembler/token.h
 TokenCreator.h
 /home/icaro/Assembler/TokenCreator.h
-syntactic_analyser.h
-/home/icaro/Assembler/syntactic_analyser.h
-SemanticAnalyser.h
-/home/icaro/Assembler/SemanticAnalyser.h
-Synthesizer.h
-/home/icaro/Assembler/Synthesizer.h
-Linker.h
-/home/icaro/Assembler/Linker.h
 
 /home/icaro/Assembler/source/Error.cpp
 Error.h

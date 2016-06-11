@@ -13,6 +13,10 @@ int KeyWords::opcode(std::string name){
 }
 
 Instructions::Instructions() {
+	createInventedAssembly();
+}
+
+void Instructions::createInventedAssembly() {
 	name_to_nofoperands.emplace("ADD", 1);
 	name_to_nofoperands.emplace("SUB", 1);
 	name_to_nofoperands.emplace("MULT", 1);
@@ -26,10 +30,16 @@ Instructions::Instructions() {
 	name_to_nofoperands.emplace("COPY", 2);
 	name_to_nofoperands.emplace("INPUT", 1);
 	name_to_nofoperands.emplace("OUTPUT", 1);
-	name_to_nofoperands.emplace("STOP", 0);
+	name_to_nofoperands.emplace("STOP", 0);	
 }
 
+void Instructions::createIA32() {}
+
 Directives::Directives() {
+	createInventedAssembly();
+}
+
+void Directives::createInventedAssembly() {
 	name_to_nofoperands.emplace("BEGIN", 0);
 	name_to_nofoperands.emplace("END", 0);
 	name_to_nofoperands.emplace("EQU", 1);
@@ -37,10 +47,16 @@ Directives::Directives() {
 	name_to_nofoperands.emplace("CONST", 1);
 	name_to_nofoperands.emplace("SECTION", 1);
 	name_to_nofoperands.emplace("PUBLIC", 1);
-	name_to_nofoperands.emplace("EXTERN", 0);
+	name_to_nofoperands.emplace("EXTERN", 0);	
 }
 
+void Directives::createIA32() {}
+
 Opcodes::Opcodes() {
+
+}
+
+void Opcodes::createInventedAssembly() {
 	name_to_opcode.emplace("ADD", 1);
 	name_to_opcode.emplace("SUB", 2);
 	name_to_opcode.emplace("MULT", 3);
@@ -56,3 +72,5 @@ Opcodes::Opcodes() {
 	name_to_opcode.emplace("OUTPUT", 13);
 	name_to_opcode.emplace("STOP", 14);
 }
+
+void Opcodes::createIA32() {}

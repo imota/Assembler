@@ -6,12 +6,7 @@
 #include "PreProcessor.h"
 #include "FirstPass.h"
 #include "parser.h"
-#include "token.h"
 #include "TokenCreator.h"
-#include "syntactic_analyser.h"
-#include "SemanticAnalyser.h"
-#include "Synthesizer.h"
-#include "Linker.h"
 
 std::string chooseInputFile() {
 	int option;
@@ -41,8 +36,10 @@ int main() {
 	//frname = chooseInputFile();
 	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 	std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
-	for(int i = 0; i < parsed_str.size(); i++)
+	for(int i = 0; i < parsed_str.size(); i++) {
 		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i]);
+		std::cout << parsed_str[i].name << " ";
+	}
 		
 	return 0;
 }
