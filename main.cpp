@@ -16,22 +16,10 @@
 std::string chooseInputFile() {
 	int option;
 	std::string fname;
-	std::cout << "Assemble file: \n[1] ../TestFiles/moda.asm\n[2] ../TestFiles/modb.asm\n"
-				"[3] ../TestFiles/triangulo.asm\n[4] ../TestFiles/naofaznada.asm\n"
-				"[5] ../TestFiles/zerinho.asm\n[6] Type in the file name\n[0] Go to Linking menu\nOption: ";
+	std::cout << "Assemble file: \n[1] Type in the file name\n[2] Go to Linking menu\nOption: ";
 	std::cin >> option;
 	switch(option){
 		case 1:
-			return "../TestFiles/moda.asm";
-		case 2:
-			return "../TestFiles/modb.asm";
-		case 3:
-			return "../TestFiles/triangulo.asm";
-		case 4:
-			return "../TestFiles/naofaznada.asm";
-		case 5:
-			return "../TestFiles/zerinho.asm";
-		case 6:
 			std::cin >> fname;
 			return fname;
 		default:
@@ -44,6 +32,7 @@ std::string chooseOutputFile(){
 	std::string name;
 	std::cout << "Type the name of the output file: ";
 	std::cin >> name;
+	name.insert(0, "../assembled/");
 	return name;
 }
 
@@ -54,8 +43,6 @@ int main() {
 	std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
 	for(int i = 0; i < parsed_str.size(); i++)
 		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i]);
-
-	
 		
 	return 0;
 }
