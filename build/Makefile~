@@ -138,30 +138,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-source/Error.o: source/Error.cpp.o
-.PHONY : source/Error.o
-
-# target to build an object file
-source/Error.cpp.o:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Error.cpp.o
-.PHONY : source/Error.cpp.o
-
-source/Error.i: source/Error.cpp.i
-.PHONY : source/Error.i
-
-# target to preprocess a source file
-source/Error.cpp.i:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Error.cpp.i
-.PHONY : source/Error.cpp.i
-
-source/Error.s: source/Error.cpp.s
-.PHONY : source/Error.s
-
-# target to generate assembly for a file
-source/Error.cpp.s:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Error.cpp.s
-.PHONY : source/Error.cpp.s
-
 source/FirstPass.o: source/FirstPass.cpp.o
 .PHONY : source/FirstPass.o
 
@@ -185,30 +161,6 @@ source/FirstPass.s: source/FirstPass.cpp.s
 source/FirstPass.cpp.s:
 	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/FirstPass.cpp.s
 .PHONY : source/FirstPass.cpp.s
-
-source/Linker.o: source/Linker.cpp.o
-.PHONY : source/Linker.o
-
-# target to build an object file
-source/Linker.cpp.o:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Linker.cpp.o
-.PHONY : source/Linker.cpp.o
-
-source/Linker.i: source/Linker.cpp.i
-.PHONY : source/Linker.i
-
-# target to preprocess a source file
-source/Linker.cpp.i:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Linker.cpp.i
-.PHONY : source/Linker.cpp.i
-
-source/Linker.s: source/Linker.cpp.s
-.PHONY : source/Linker.s
-
-# target to generate assembly for a file
-source/Linker.cpp.s:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Linker.cpp.s
-.PHONY : source/Linker.cpp.s
 
 source/PreProcessor.o: source/PreProcessor.cpp.o
 .PHONY : source/PreProcessor.o
@@ -234,101 +186,29 @@ source/PreProcessor.cpp.s:
 	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/PreProcessor.cpp.s
 .PHONY : source/PreProcessor.cpp.s
 
-source/SemanticAnalyser.o: source/SemanticAnalyser.cpp.o
-.PHONY : source/SemanticAnalyser.o
+source/instruction.o: source/instruction.cpp.o
+.PHONY : source/instruction.o
 
 # target to build an object file
-source/SemanticAnalyser.cpp.o:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/SemanticAnalyser.cpp.o
-.PHONY : source/SemanticAnalyser.cpp.o
+source/instruction.cpp.o:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/instruction.cpp.o
+.PHONY : source/instruction.cpp.o
 
-source/SemanticAnalyser.i: source/SemanticAnalyser.cpp.i
-.PHONY : source/SemanticAnalyser.i
-
-# target to preprocess a source file
-source/SemanticAnalyser.cpp.i:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/SemanticAnalyser.cpp.i
-.PHONY : source/SemanticAnalyser.cpp.i
-
-source/SemanticAnalyser.s: source/SemanticAnalyser.cpp.s
-.PHONY : source/SemanticAnalyser.s
-
-# target to generate assembly for a file
-source/SemanticAnalyser.cpp.s:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/SemanticAnalyser.cpp.s
-.PHONY : source/SemanticAnalyser.cpp.s
-
-source/Synthesizer.o: source/Synthesizer.cpp.o
-.PHONY : source/Synthesizer.o
-
-# target to build an object file
-source/Synthesizer.cpp.o:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Synthesizer.cpp.o
-.PHONY : source/Synthesizer.cpp.o
-
-source/Synthesizer.i: source/Synthesizer.cpp.i
-.PHONY : source/Synthesizer.i
+source/instruction.i: source/instruction.cpp.i
+.PHONY : source/instruction.i
 
 # target to preprocess a source file
-source/Synthesizer.cpp.i:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Synthesizer.cpp.i
-.PHONY : source/Synthesizer.cpp.i
+source/instruction.cpp.i:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/instruction.cpp.i
+.PHONY : source/instruction.cpp.i
 
-source/Synthesizer.s: source/Synthesizer.cpp.s
-.PHONY : source/Synthesizer.s
-
-# target to generate assembly for a file
-source/Synthesizer.cpp.s:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/Synthesizer.cpp.s
-.PHONY : source/Synthesizer.cpp.s
-
-source/TokenCreator.o: source/TokenCreator.cpp.o
-.PHONY : source/TokenCreator.o
-
-# target to build an object file
-source/TokenCreator.cpp.o:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/TokenCreator.cpp.o
-.PHONY : source/TokenCreator.cpp.o
-
-source/TokenCreator.i: source/TokenCreator.cpp.i
-.PHONY : source/TokenCreator.i
-
-# target to preprocess a source file
-source/TokenCreator.cpp.i:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/TokenCreator.cpp.i
-.PHONY : source/TokenCreator.cpp.i
-
-source/TokenCreator.s: source/TokenCreator.cpp.s
-.PHONY : source/TokenCreator.s
+source/instruction.s: source/instruction.cpp.s
+.PHONY : source/instruction.s
 
 # target to generate assembly for a file
-source/TokenCreator.cpp.s:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/TokenCreator.cpp.s
-.PHONY : source/TokenCreator.cpp.s
-
-source/keywords.o: source/keywords.cpp.o
-.PHONY : source/keywords.o
-
-# target to build an object file
-source/keywords.cpp.o:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/keywords.cpp.o
-.PHONY : source/keywords.cpp.o
-
-source/keywords.i: source/keywords.cpp.i
-.PHONY : source/keywords.i
-
-# target to preprocess a source file
-source/keywords.cpp.i:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/keywords.cpp.i
-.PHONY : source/keywords.cpp.i
-
-source/keywords.s: source/keywords.cpp.s
-.PHONY : source/keywords.s
-
-# target to generate assembly for a file
-source/keywords.cpp.s:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/keywords.cpp.s
-.PHONY : source/keywords.cpp.s
+source/instruction.cpp.s:
+	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/instruction.cpp.s
+.PHONY : source/instruction.cpp.s
 
 source/parser.o: source/parser.cpp.o
 .PHONY : source/parser.o
@@ -353,30 +233,6 @@ source/parser.s: source/parser.cpp.s
 source/parser.cpp.s:
 	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/parser.cpp.s
 .PHONY : source/parser.cpp.s
-
-source/syntactic_analyser.o: source/syntactic_analyser.cpp.o
-.PHONY : source/syntactic_analyser.o
-
-# target to build an object file
-source/syntactic_analyser.cpp.o:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/syntactic_analyser.cpp.o
-.PHONY : source/syntactic_analyser.cpp.o
-
-source/syntactic_analyser.i: source/syntactic_analyser.cpp.i
-.PHONY : source/syntactic_analyser.i
-
-# target to preprocess a source file
-source/syntactic_analyser.cpp.i:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/syntactic_analyser.cpp.i
-.PHONY : source/syntactic_analyser.cpp.i
-
-source/syntactic_analyser.s: source/syntactic_analyser.cpp.s
-.PHONY : source/syntactic_analyser.s
-
-# target to generate assembly for a file
-source/syntactic_analyser.cpp.s:
-	$(MAKE) -f CMakeFiles/Tradutor.dir/build.make CMakeFiles/Tradutor.dir/source/syntactic_analyser.cpp.s
-.PHONY : source/syntactic_analyser.cpp.s
 
 source/token.o: source/token.cpp.o
 .PHONY : source/token.o
@@ -414,36 +270,18 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... source/Error.o"
-	@echo "... source/Error.i"
-	@echo "... source/Error.s"
 	@echo "... source/FirstPass.o"
 	@echo "... source/FirstPass.i"
 	@echo "... source/FirstPass.s"
-	@echo "... source/Linker.o"
-	@echo "... source/Linker.i"
-	@echo "... source/Linker.s"
 	@echo "... source/PreProcessor.o"
 	@echo "... source/PreProcessor.i"
 	@echo "... source/PreProcessor.s"
-	@echo "... source/SemanticAnalyser.o"
-	@echo "... source/SemanticAnalyser.i"
-	@echo "... source/SemanticAnalyser.s"
-	@echo "... source/Synthesizer.o"
-	@echo "... source/Synthesizer.i"
-	@echo "... source/Synthesizer.s"
-	@echo "... source/TokenCreator.o"
-	@echo "... source/TokenCreator.i"
-	@echo "... source/TokenCreator.s"
-	@echo "... source/keywords.o"
-	@echo "... source/keywords.i"
-	@echo "... source/keywords.s"
+	@echo "... source/instruction.o"
+	@echo "... source/instruction.i"
+	@echo "... source/instruction.s"
 	@echo "... source/parser.o"
 	@echo "... source/parser.i"
 	@echo "... source/parser.s"
-	@echo "... source/syntactic_analyser.o"
-	@echo "... source/syntactic_analyser.i"
-	@echo "... source/syntactic_analyser.s"
 	@echo "... source/token.o"
 	@echo "... source/token.i"
 	@echo "... source/token.s"

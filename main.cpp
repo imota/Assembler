@@ -47,75 +47,15 @@ std::string chooseOutputFile(){
 	return name;
 }
 
-bool chooseFilesToLink(std::string& str1, std::string& str2){
-	std::cout << "Type name of first file to link or type 0 to leave: ";
-	std::cin >> str1;
-	if(str1 == "0") {
-		str2 = str1;
-		std::cout << "No files linked\n";
-		return 0;
-	}
-	std::cout << "Type name of second file to link or type 0 to leave: ";
-	std::cin >> str2;
-	if(str2 == "0") {
-		std::cout << "No files linked\n";
-		return 0;
-	}
-	return 1;
-}
-
 int main() {
-	std::string frname;
-	while(true){
+	std::string frname = "../TestFiles/zerinho.asm";
+	//frname = chooseInputFile();
+	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
+	std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
+	for(int i = 0; i < parsed_str.size(); i++)
+		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i]);
 
-		frname = chooseInputFile();
-		if(frname == "")
-			break;
-
-		std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
-		std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
-
-		bool valid_line = true;
-		std::vector<int> invalid_line_n;
-
-		for(int i = 0; i < parsed_str.size(); i++) {
-			if(TokenCreator::instance().isTokenValid(parsed_str[i])) {
-				parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i]);
-			}
-			else {
-				TokenCreator::instance().generateError(parsed_str[i]);
-				invalid_line_n.push_back(parsed_str[i].line_number);
-			}
-		}
-
-		for (int i=0;i<parsed_str.size();i++) {
-			if (std::find(invalid_line_n.begin(),invalid_line_n.end(),parsed_str[i].line_number) != invalid_line_n.end()) {
-				parsed_str.erase(parsed_str.begin() + i);
-				i--;
-			}
-		}
-
-		parsed_str = SyntacticAnalyser::instance().analyseText(parsed_str);
-
-		std::vector<Token*> parsed;
-		for(size_t i = 0; i < parsed_str.size(); i++) { parsed.push_back(&parsed_str[i]); }
-		FirstPass::instance().makePass(parsed);
-
-		SemanticAnalyser::instance().makeAnalysis(FirstPass::instance().getTokens(), 
-												  FirstPass::instance().getSimbleTable(),
-												  FirstPass::instance().getDefinitionTable(), 
-												  FirstPass::instance().getUseTable());
+	
 		
-		Synthesizer::instance().synthesize(SemanticAnalyser::instance().getTokens(), 
-										  SemanticAnalyser::instance().getSimbleTable(),
-										  SemanticAnalyser::instance().getDefinitionTable(), 
-										  SemanticAnalyser::instance().getUseTable(), chooseOutputFile());
-		Error::instance().reset();
-	}
-
-	std::string str1, str2;
-	if(chooseFilesToLink(str1, str2))
-		Linker::instance().linkFiles(str1, str2, chooseOutputFile());
-
 	return 0;
 }
