@@ -26,6 +26,7 @@ set(SOURCES
 	source/Synthesizer.cpp
 	source/Error.cpp
 	source/Linker.cpp
+	source/translator.cpp
 	)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})

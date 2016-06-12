@@ -7,6 +7,8 @@
 #include "FirstPass.h"
 #include "parser.h"
 #include "TokenCreator.h"
+#include "translator.h"
+#include "keywords.h"
 
 std::string chooseInputFile() {
 	int option;
@@ -33,13 +35,21 @@ std::string chooseOutputFile(){
 
 int main() {
 	std::string frname = "../TestFiles/zerinho.asm";
-	//frname = chooseInputFile();
+
 	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 	std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
-	for(int i = 0; i < parsed_str.size(); i++) {
-		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i]);
-		std::cout << parsed_str[i].name << " ";
+	for(int i = 0; i < parsed_str.size(); i++)
+		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i], Invented);
+
+	Translator t;
+	parsed_str = t.translate(parsed_str);
+	
+	for(int i = 0; i < parsed_str.size(); i++)
+		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i], IA32);
+
+	for (int i=0;i<parsed_str.size();i++) {
+		std::cout << parsed_str[i].name << " is " << parsed_str[i].Type() << std::endl;
 	}
-		
+
 	return 0;
 }
