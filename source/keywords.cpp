@@ -102,6 +102,10 @@ void Opcodes::createInventedAssembly() {
 	name_to_opcode.emplace("INPUT", 12);
 	name_to_opcode.emplace("OUTPUT", 13);
 	name_to_opcode.emplace("STOP", 14);
+	name_to_opcode.emplace("C_INPUT", 15);
+	name_to_opcode.emplace("C_OUTPUT", 16);
+	name_to_opcode.emplace("S_INPUT", 17);
+	name_to_opcode.emplace("S_OUTPUT", 18);
 }
 
 void Opcodes::createIA32() {}

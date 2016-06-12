@@ -7,6 +7,8 @@
 #include "FirstPass.h"
 #include "parser.h"
 #include "TokenCreator.h"
+#include "translator.h"
+#include "translator2.h"
 
 std::string chooseInputFile() {
 	int option;
@@ -37,9 +39,11 @@ int main() {
 	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 	std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
 	for(int i = 0; i < parsed_str.size(); i++) {
-		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i]);
+		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i], Invented);
 		std::cout << parsed_str[i].name << " ";
 	}
+
+	Translator2::instance().translate(parsed_str);
 		
 	return 0;
 }
