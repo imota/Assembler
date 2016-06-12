@@ -193,6 +193,7 @@ std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
 	removeDirectivesEquIf();
 	removeEmptySpaces();
 	//printStrings();
+	
 	return giveStringVector();
 }
 
