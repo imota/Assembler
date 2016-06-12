@@ -78,7 +78,8 @@ void Directives::createInventedAssembly() {
 	name_to_nofoperands.emplace("CONST", 1);
 	name_to_nofoperands.emplace("SECTION", 1);
 	name_to_nofoperands.emplace("PUBLIC", 1);
-	name_to_nofoperands.emplace("EXTERN", 0);	
+	name_to_nofoperands.emplace("EXTERN", 0);
+	name_to_nofoperands.emplace("IF", 1);
 }
 
 void Directives::createIA32() {}
@@ -106,6 +107,16 @@ void Opcodes::createInventedAssembly() {
 	name_to_opcode.emplace("C_OUTPUT", 16);
 	name_to_opcode.emplace("S_INPUT", 17);
 	name_to_opcode.emplace("S_OUTPUT", 18);
+
+	name_to_opcode.emplace("BEGIN", 19);
+	name_to_opcode.emplace("END", 20);
+	name_to_opcode.emplace("EQU", 21);
+	name_to_opcode.emplace("SPACE", 22);
+	name_to_opcode.emplace("CONST", 23);
+	name_to_opcode.emplace("SECTION", 24);
+	name_to_opcode.emplace("PUBLIC", 25);
+	name_to_opcode.emplace("EXTERN", 26);
+	name_to_opcode.emplace("IF", 27);
 }
 
 void Opcodes::createIA32() {}

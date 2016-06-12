@@ -25,11 +25,21 @@ void Translator2::init() {
 	functions.push_back(&Translator2::store);	//11
 	functions.push_back(&Translator2::input);	//12
 	functions.push_back(&Translator2::output);	//13
-	functions.push_back(&Translator2::stop);		//14
-	functions.push_back(&Translator2::c_input); 	//15
+	functions.push_back(&Translator2::stop);	 //14
+	functions.push_back(&Translator2::c_input);  //15
 	functions.push_back(&Translator2::c_output); //16
-	functions.push_back(&Translator2::s_input); 	//17
+	functions.push_back(&Translator2::s_input);  //17
 	functions.push_back(&Translator2::s_output); //18
+
+	functions.push_back(&Translator2::begin); //19
+	functions.push_back(&Translator2::end); //20
+	functions.push_back(&Translator2::equ); //21
+	functions.push_back(&Translator2::space); //22
+	functions.push_back(&Translator2::const_asm); //23
+	functions.push_back(&Translator2::section); //24
+	functions.push_back(&Translator2::public_asm); //25
+	functions.push_back(&Translator2::extern_asm); //26
+	functions.push_back(&Translator2::if_asm); //27
 }
 
 void Translator2::generateAsmFile(){ //TODO: change cout to file
@@ -51,6 +61,8 @@ void Translator2::translate(std::vector<Token> tks){
 			i = checkPrevLabel(i);
 			i = (this->*functions[hash.opcode(tokens[i].name)])(i);
 		}
+		else if(tokens[i].Type() == "DIRECTIVE")
+			i = (this->*functions[hash.opcode(tokens[i].name)])(i);
 	}
 
 	generateAsmFile();
@@ -71,7 +83,7 @@ size_t Translator2::checkPrevLabel(int i){
 ##############################################################
 ##############################################################
 ##############################################################
-TRANSLATION TO INSTRUCTIONS:
+TRANSLATION FOR INSTRUCTIONS:
 */
 
 size_t Translator2::add(int i) {
@@ -202,3 +214,23 @@ size_t Translator2::c_input(int i) { return i; } //TODO
 size_t Translator2::c_output(int i) { return i; } //TODO
 size_t Translator2::s_input(int i) { return i; } //TODO
 size_t Translator2::s_output(int i) { return i; } //TODO
+
+
+/*
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+##############################################################
+TRANSLATION FOR DIRECTIVES: (TODO)
+*/
+
+size_t Translator2::begin(int i) { return i; }
+size_t Translator2::end(int i) { return i; }
+size_t Translator2::equ(int i) { return i; }
+size_t Translator2::space(int i) { return i; }
+size_t Translator2::const_asm(int i) { return i; }
+size_t Translator2::section(int i) { return i; }
+size_t Translator2::public_asm(int i) { return i; }
+size_t Translator2::extern_asm(int i) { return i; }
+size_t Translator2::if_asm(int i) { return i; }

@@ -38,6 +38,16 @@ private:
 	size_t s_input(int i);
 	size_t s_output(int i);
 
+	size_t begin(int i);
+	size_t end(int i);
+	size_t equ(int i);
+	size_t space(int i);
+	size_t const_asm(int i);
+	size_t section(int i);
+	size_t public_asm(int i);
+	size_t extern_asm(int i);
+	size_t if_asm(int i);
+
 	size_t checkPrevLabel(int i);
 	void generateAsmFile();
 	void init();
