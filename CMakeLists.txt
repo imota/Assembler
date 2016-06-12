@@ -27,6 +27,7 @@ set(SOURCES
 	source/Error.cpp
 	source/Linker.cpp
 	source/translator.cpp
+	source/translator2.cpp
 	)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
