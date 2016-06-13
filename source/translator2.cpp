@@ -25,11 +25,11 @@ void Translator2::init() {
 	functions.push_back(&Translator2::store);	//11
 	functions.push_back(&Translator2::input);	//12
 	functions.push_back(&Translator2::output);	//13
-	functions.push_back(&Translator2::stop);		//14
-	functions.push_back(&Translator2::c_input); 	//15
-	functions.push_back(&Translator2::c_output); //16
-	functions.push_back(&Translator2::s_input); 	//17
-	functions.push_back(&Translator2::s_output); //18
+	functions.push_back(&Translator2::stop);	//14
+	functions.push_back(&Translator2::c_input); //15
+	functions.push_back(&Translator2::c_output);//16
+	functions.push_back(&Translator2::s_input); //17
+	functions.push_back(&Translator2::s_output);//18
 }
 
 void Translator2::generateAsmFile(){ //TODO: change cout to file
@@ -60,7 +60,7 @@ size_t Translator2::checkPrevLabel(int i){
 	if(tokens[i-1].Type() == "LABEL"){
 		i--;
 		sectiontext.push_back(tokens[i].name);
-		tokens.erase(tokens.begin()+1);
+		tokens.erase(tokens.begin()+i);
 	}
 	return i;
 }
@@ -81,8 +81,7 @@ size_t Translator2::add(int i) {
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::sub(int i) {
@@ -92,12 +91,30 @@ size_t Translator2::sub(int i) {
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
-size_t Translator2::mult(int i) { return i; } //TODO
-size_t Translator2::div(int i) { return i; } //TODO
+size_t Translator2::mult(int i) { 
+	std::string line = "MUL dword [";
+	line.append(tokens[i+1].name);
+	line.push_back(']');
+	sectiontext.push_back(line);
+	tokens.erase(tokens.begin()+i+1);
+	tokens.erase(tokens.begin()+i);
+	return --i;
+} 
+
+size_t Translator2::div(int i) { 
+	std::string line = "SUB EDX, EDX";
+	sectiontext.push_back(line);
+	line = "DIV dword ["
+	line.append(tokens[i+1].name);
+	line.push_back(']');
+	sectiontext.push_back(line);
+	tokens.erase(tokens.begin()+i+1);
+	tokens.erase(tokens.begin()+i);
+	return --i;
+}
 
 size_t Translator2::jmp(int i) {
 	std::string line = "JMP ";
@@ -105,32 +122,29 @@ size_t Translator2::jmp(int i) {
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::jmpn(int i) {
 	std::string line = "CMP EAX 0";
 	sectiontext.push_back(line);
-	line = "JB ";
+	line = "JL ";
 	line.append(tokens[i+1].name);
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::jmpp(int i) {
 	std::string line = "CMP EAX 0";
 	sectiontext.push_back(line);
-	line = "JA ";
+	line = "JG ";
 	line.append(tokens[i+1].name);
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::jmpz(int i) {
@@ -141,8 +155,7 @@ size_t Translator2::jmpz(int i) {
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::copy(int i) {
@@ -157,8 +170,7 @@ size_t Translator2::copy(int i) {
 	tokens.erase(tokens.begin()+i+2);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::load(int i) {
@@ -168,8 +180,7 @@ size_t Translator2::load(int i) {
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::store(int i) {
@@ -179,8 +190,7 @@ size_t Translator2::store(int i) {
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::input(int i) { return i; } //TODO
@@ -194,8 +204,7 @@ size_t Translator2::stop(int i) {
 	line = "INT 80H";
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i);
-	i--;
-	return i;
+	return --i;
 }
 
 size_t Translator2::c_input(int i) { return i; } //TODO
