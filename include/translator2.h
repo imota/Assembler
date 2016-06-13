@@ -1,3 +1,6 @@
+#ifndef TRAB2_SB_ZAGO_ICARO_TRANSLATOR2
+#define TRAB2_SB_ZAGO_ICARO_TRANSLATOR2
+
 #include<vector>
 #include<string>
 #include "keywords.h"
@@ -52,3 +55,5 @@ private:
 	void generateAsmFile();
 	void init();
 };
+
+#endif
