@@ -51,7 +51,7 @@ void Translator2::init() {
 							"LEAVE\n"
 							"RET\n";
 	IOfunctions.push_back(charI);
-		std::string charO = "EscerverChar: ENTER 0,0\n"
+		std::string charO = "EscreverChar: ENTER 0,0\n"
 							"PUSH EAX\n"
 							"OR DWORD [ECX],0x0A00\n"
 							"MOV EAX,4\n"
@@ -118,7 +118,7 @@ void Translator2::init() {
 							"MOV ECX, EAX\n"
 							"DEC ESI\n"
 							"CMP ESI,0\n"
-							"JNZ SOMA_INTEIRO\n"
+							"JNZ SOMA_LERINTEIRO\n"
 							"POP EAX\n"
 							"LEAVE\n"
 							"RET\n";
@@ -126,9 +126,9 @@ void Translator2::init() {
 	std::string intO = 		"EscreverInteiro: ENTER 4,0\n"
 							"PUSH EAX\n"
 							"MOV EBX, 10\n"
-							"MOV, ESI, 0\n"
+							"MOV ESI, 0\n"
 							"MOV EAX, [EDI]\n"
-							"MOV EDX, 0"
+							"MOV EDX, 0\n"
 							"CALC_ESCREVERINTEIRO: DIV EBX\n"
 							"PUSH EDX\n"
 							"INC ESI\n"
