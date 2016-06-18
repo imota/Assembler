@@ -44,7 +44,7 @@ void Translator2::init() {
 
 void Translator2::generateAsmFile(){ //TODO: change cout to file
 	std::cout << "\nsection .bss\n";
-	for(std::string& s : sectionbss)		std::cout << s << std::endl;
+	for(std::string& s : sectionbss)	std::cout << s << std::endl;
 	std::cout << "section .data\n";
 	for(std::string& s : sectiondata)	std::cout << s << std::endl;
 	std::cout << "section .text\n";
@@ -59,7 +59,7 @@ void Translator2::translate(std::vector<Token> tks){
 	for(size_t i = 0; i < tokens.size(); i++){
 		if(tokens[i].Type() == "INSTRUCTION"){
 			i = checkPrevLabel(i);
-			i = (this->*functions[hash.opcode(tokens[i].name)])(i);
+			i = (this->*functions[hash.opcode(tokens[i].name)])(i); //Calls the corresponding method in the vector of function pointers
 		}
 		else if(tokens[i].Type() == "DIRECTIVE")
 			i = (this->*functions[hash.opcode(tokens[i].name)])(i);
@@ -77,6 +77,17 @@ size_t Translator2::checkPrevLabel(int i){
 	return i;
 }
 
+std::string Translator2::labelName(Token tk){
+	size_t found = tk.name.find("+");
+	if(found != std::string::npos){	//If found character '+' in tk.name
+		char aux = tk.name[found+1];
+		aux -= 0x30; aux *= 4; aux += 0x30;
+		tk.name[found+1] = aux;
+	}
+	return tk.name;
+
+}
+
 /*
 ##############################################################
 ##############################################################
@@ -88,7 +99,7 @@ TRANSLATION FOR INSTRUCTIONS:
 
 size_t Translator2::add(int i) {
 	std::string line = "ADD EAX, [";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	line.push_back(']');
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
@@ -98,7 +109,7 @@ size_t Translator2::add(int i) {
 
 size_t Translator2::sub(int i) {
 	std::string line = "SUB EAX, [";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	line.push_back(']');
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
@@ -108,7 +119,7 @@ size_t Translator2::sub(int i) {
 
 size_t Translator2::mult(int i) { 
 	std::string line = "MUL dword [";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	line.push_back(']');
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
@@ -119,8 +130,8 @@ size_t Translator2::mult(int i) {
 size_t Translator2::div(int i) { 
 	std::string line = "SUB EDX, EDX";
 	sectiontext.push_back(line);
-	line = "DIV dword ["
-	line.append(tokens[i+1].name);
+	line = "DIV dword [";
+	line.append(labelName(tokens[i+1]));
 	line.push_back(']');
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
@@ -130,7 +141,7 @@ size_t Translator2::div(int i) {
 
 size_t Translator2::jmp(int i) {
 	std::string line = "JMP ";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
@@ -141,7 +152,7 @@ size_t Translator2::jmpn(int i) {
 	std::string line = "CMP EAX 0";
 	sectiontext.push_back(line);
 	line = "JL ";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
@@ -152,7 +163,7 @@ size_t Translator2::jmpp(int i) {
 	std::string line = "CMP EAX 0";
 	sectiontext.push_back(line);
 	line = "JG ";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
@@ -163,7 +174,7 @@ size_t Translator2::jmpz(int i) {
 	std::string line = "CMP EAX 0";
 	sectiontext.push_back(line);
 	line = "JE ";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
 	tokens.erase(tokens.begin()+i);
@@ -172,11 +183,11 @@ size_t Translator2::jmpz(int i) {
 
 size_t Translator2::copy(int i) {
 	std::string line = "MOV ESI, [";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	line.push_back(']');
 	sectiontext.push_back(line);
 	line = "MOV DWORD[";
-	line.append(tokens[i+2].name);
+	line.append(labelName(tokens[i+2]));
 	line.append("], ESI");
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+2);
@@ -187,7 +198,7 @@ size_t Translator2::copy(int i) {
 
 size_t Translator2::load(int i) {
 	std::string line = "MOV EAX, [";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	line.push_back(']');
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
@@ -197,7 +208,7 @@ size_t Translator2::load(int i) {
 
 size_t Translator2::store(int i) {
 	std::string line = "MOV DWORD[";
-	line.append(tokens[i+1].name);
+	line.append(labelName(tokens[i+1]));
 	line.append("], EAX");
 	sectiontext.push_back(line);
 	tokens.erase(tokens.begin()+i+1);
