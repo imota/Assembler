@@ -12,7 +12,7 @@
 class Translator2 {
 public:
 	static Translator2& instance();
-	void translate(std::vector<Token> tks);
+	void translate(std::vector<Token> tks, std::string outputFileName);
 	
 
 private:
@@ -23,6 +23,7 @@ private:
 	std::vector<std::string> IOfunctions;
 	std::vector<Token> tokens;
 	std::vector<size_t (Translator2::*)(int)> functions;
+	std::string foutname;
 
 	size_t add(int i);
 	size_t sub(int i);

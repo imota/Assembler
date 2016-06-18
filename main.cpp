@@ -36,6 +36,7 @@ std::string chooseOutputFile(){
 
 int main() {
 	std::string frname = "../TestFiles/zerinho.asm";
+	std::string foutname = "ia32.s";
 
 	std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 	std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
@@ -53,7 +54,7 @@ int main() {
 		std::cout << parsed_str[i].name << " is " << parsed_str[i].Type() << std::endl;
 	}*/
 
-	Translator2::instance().translate(parsed_str);
+	Translator2::instance().translate(parsed_str, foutname);
 		
 	return 0;
 }

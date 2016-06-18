@@ -1,5 +1,7 @@
+#include<iostream>
 #include<vector>
 #include<string>
+#include<fstream>
 #include "keywords.h"
 #include "token.h"
 #include "TokenCreator.h"
@@ -40,7 +42,7 @@ void Translator2::init() {
 	functions.push_back(&Translator2::extern_asm); //26
 	functions.push_back(&Translator2::if_asm); //27
 
-	std::string charI = "LerChar: ENTER 0,0\n"
+	std::string charI = 	"\nLerChar: ENTER 0,0\n"
 							"PUSH EAX\n"
 							"MOV EAX,3\n"
 							"MOV EBX,0\n"
@@ -160,18 +162,22 @@ void Translator2::init() {
 }
 
 void Translator2::generateAsmFile(){ //TODO: change cout to file
-	for(std::string& s : defines)		std::cout << s << std::endl;
-	std::cout << "\nsection .bss\n";
-	for(std::string& s : sectionbss)	std::cout << s << std::endl;
-	std::cout << "section .data\n";
-	for(std::string& s : sectiondata)	std::cout << s << std::endl;
-	std::cout << "section .text\n";
-	for(std::string& s : sectiontext)	std::cout << s << std::endl;
-	for(std::string& s : IOfunctions)	std::cout << s << std::endl;
+	std::ofstream myfile;
+	myfile.open(foutname);
+	for(std::string& s : defines)		myfile << s << std::endl;
+	myfile << "SECTION .BSS\n";
+	for(std::string& s : sectionbss)	myfile << s << std::endl;
+	myfile << "SECTION .DATA\n";
+	for(std::string& s : sectiondata)	myfile << s << std::endl;
+	myfile << "SECTION .TEXT\nglobal _start\n_start:\n";
+	for(std::string& s : sectiontext)	myfile << s << std::endl;
+	for(std::string& s : IOfunctions)	myfile << s << std::endl;
+	myfile.close();
 }
 
-void Translator2::translate(std::vector<Token> tks){
+void Translator2::translate(std::vector<Token> tks, std::string outputFileName){
 	tokens = tks;
+	foutname = outputFileName;
 	init();
 
 	Opcodes hash(Invented);
