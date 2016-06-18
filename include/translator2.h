@@ -16,9 +16,11 @@ public:
 	
 
 private:
+	std::vector<std::string> defines;
 	std::vector<std::string> sectionbss;
 	std::vector<std::string> sectiondata;
 	std::vector<std::string> sectiontext;
+	std::vector<std::string> IOfunctions;
 	std::vector<Token> tokens;
 	std::vector<size_t (Translator2::*)(int)> functions;
 
@@ -52,6 +54,8 @@ private:
 	size_t if_asm(int i);
 
 	size_t checkPrevLabel(int i);
+	std::string labelName(Token tk);
+	bool isInteger(std::string s);
 	void generateAsmFile();
 	void init();
 };

@@ -43,8 +43,8 @@ int main() {
 	for(int i = 0; i < parsed_str.size(); i++)
 		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i], Invented);
 
-	Translator t;
-	parsed_str = t.translate(parsed_str);
+	//Translator t;
+	//parsed_str = t.translate(parsed_str);
 	
 	/*for(int i = 0; i < parsed_str.size(); i++)
 		parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i], IA32);

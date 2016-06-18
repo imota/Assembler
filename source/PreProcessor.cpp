@@ -190,7 +190,7 @@ std::vector<LineOfFile>& PreProcessor::preProcessFile(std::string frname) {
 	removeComments();
 	removeCommaCopy();
 	removeEmptySpaces();
-	removeDirectivesEquIf();
+	//removeDirectivesEquIf();
 	removeEmptySpaces();
 	//printStrings();
 	
