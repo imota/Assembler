@@ -179,22 +179,22 @@ void Translator2::translate(std::vector<Token> tks, std::string outputFileName){
 	tokens = tks;
 	foutname = outputFileName;
 	init();
-
 	Opcodes hash(Invented);
 	for(size_t i = 0; i < tokens.size(); i++){
 		if(tokens[i].Type() == "INSTRUCTION"){
 			i = checkPrevLabel(i);
 			i = (this->*functions[hash.opcode(tokens[i].name)])(i); //Calls the corresponding method in the vector of function pointers
 		}
-		else if(tokens[i].Type() == "DIRECTIVE")
+		else if(tokens[i].Type() == "DIRECTIVE") {
 			i = (this->*functions[hash.opcode(tokens[i].name)])(i);
+		}
 	}
 
 	generateAsmFile();
 }
 
 size_t Translator2::checkPrevLabel(int i){
-	if(tokens[i-1].Type() == "LABEL"){
+	if(i!=0 and tokens[i-1].Type() == "LABEL"){
 		i--;
 		sectiontext.push_back(tokens[i].name);
 		tokens.erase(tokens.begin()+i);

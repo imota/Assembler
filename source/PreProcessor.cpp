@@ -48,8 +48,6 @@ void PreProcessor::readFileToStrings() {
 
 
 void PreProcessor::removeComments() {
-
-	
 	for(LineOfFile& eachLine : preProcessed){
 		size_t found = (eachLine.line).find_first_of(";");	//look for ';'
 		if(found != std::string::npos){						//if found
@@ -58,8 +56,6 @@ void PreProcessor::removeComments() {
 			(eachLine.line).push_back('\n');
 		}
 	}
-	
-	
 }
 
 void PreProcessor::removeEmptySpaces() {
