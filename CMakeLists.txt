@@ -28,6 +28,7 @@ set(SOURCES
 	source/Linker.cpp
 	source/translator.cpp
 	source/translator2.cpp
+	source/mounter.cpp
 	)
 
 add_executable(${PROJECT_NAME} main.cpp ${SOURCES})
