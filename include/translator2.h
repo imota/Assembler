@@ -13,7 +13,8 @@ class Translator2 {
 public:
 	static Translator2& instance();
 	void translate(std::vector<Token> tks, std::string outputFileName);
-	
+	std::string text_bin;
+	std::string data_bin;
 
 private:
 	std::vector<std::string> defines;

@@ -7,6 +7,9 @@ class Mounter {
   public:
   	static Mounter& instance();
   	void mount(std::string foutname);
+
+  	std::string text;
+  	std::string data;
   private:
   	Mounter() {}
 };

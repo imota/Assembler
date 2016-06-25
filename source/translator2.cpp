@@ -164,14 +164,24 @@ void Translator2::init() {
 void Translator2::generateAsmFile(){ //TODO: change cout to file
 	std::ofstream myfile;
 	myfile.open(foutname);
-	for(std::string& s : defines)		myfile << s << std::endl;
+	for(std::string& s : defines) {
+		myfile << s << std::endl;
+	}
 	myfile << "SECTION .bss\n";
-	for(std::string& s : sectionbss)	myfile << s << std::endl;
+	for(std::string& s : sectionbss) {
+		myfile << s << std::endl;
+	}
 	myfile << "SECTION .DATA\n";
-	for(std::string& s : sectiondata)	myfile << s << std::endl;
+	for(std::string& s : sectiondata) {
+		myfile << s << std::endl;
+	}
 	myfile << "SECTION .TEXT\nglobal _start\n_start:\n";
-	for(std::string& s : sectiontext)	myfile << s << std::endl;
-	for(std::string& s : IOfunctions)	myfile << s << std::endl;
+	for(std::string& s : sectiontext) {
+		myfile << s << std::endl;
+	}
+	for(std::string& s : IOfunctions) {
+		myfile << s << std::endl;
+	}
 	myfile.close();
 }
 
