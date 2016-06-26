@@ -10,6 +10,9 @@
 #include "translator.h"
 #include "keywords.h"
 #include "translator2.h"
+#include "mounter.h"
+
+typedef unsigned char Byte;
 
 int main(int argc, char* argv[]) {
 	if(argc ==3){
@@ -22,6 +25,10 @@ int main(int argc, char* argv[]) {
 			parsed_str[i] = TokenCreator::instance().identifyTokenType(parsed_str[i], Invented);
 
 		Translator2::instance().translate(parsed_str, foutname);
+
+		Mounter::instance().text = Translator2::instance().text_bin;
+		Mounter::instance().data = Translator2::instance().data_bin;
+		Mounter::instance().mount(foutname);
 	}
 	else
 		std::cout << "Wrong number of arguments!\n";
