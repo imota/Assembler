@@ -15,9 +15,10 @@
 typedef unsigned char Byte;
 
 int main(int argc, char* argv[]) {
-	if(argc ==3){
+	if(argc == 4){
 		std::string frname(argv[1]);
 		std::string foutname(argv[2]);
+		std::string foutbin(argv[3]);
 		std::vector<LineOfFile> vector_of_elements = PreProcessor::instance().preProcessFile(frname);
 		std::vector<Token> parsed_str = Parser::instance().Parse(vector_of_elements);
 
@@ -28,7 +29,7 @@ int main(int argc, char* argv[]) {
 
 		Mounter::instance().text = Translator2::instance().text_bin;
 		Mounter::instance().data = Translator2::instance().data_bin;
-		Mounter::instance().mount(foutname);
+		Mounter::instance().mount(foutbin);
 	}
 	else
 		std::cout << "Wrong number of arguments!\n";

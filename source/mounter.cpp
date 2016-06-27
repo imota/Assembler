@@ -1,5 +1,9 @@
 #include "mounter.h"
 
+#define INIT_SECTION_TEXT 0x08048000
+#define INIT_SECTION_DATA 0x08049000
+
+
 Mounter& Mounter::instance() {
 	static Mounter m;
 	return m;
@@ -7,7 +11,8 @@ Mounter& Mounter::instance() {
 
 void Mounter::mount(std::string foutname) {
 	ELFIO::elfio writter;
-	writter.create(ELFCLASS32, ELFDATA2LSB);
+	//writter.create(ELFCLASS32, ELFDATA2MSB); //big endian
+	writter.create(ELFCLASS32, ELFDATA2LSB); //little endian
 	writter.set_os_abi(ELFOSABI_LINUX);
 	writter.set_type(ET_EXEC);
 	writter.set_machine(EM_386);
@@ -27,8 +32,8 @@ void Mounter::mount(std::string foutname) {
 	text_sec->set_data(text.c_str(), sizeof(text.c_str()));
 	ELFIO::segment* text_seg = writter.segments.add();
 	text_seg->set_type(PT_LOAD);
-	text_seg->set_virtual_address(0x8048000);
-	text_seg->set_physical_address(0x8048000);
+	text_seg->set_virtual_address(INIT_SECTION_TEXT);
+	text_seg->set_physical_address(INIT_SECTION_TEXT);
 	text_seg->set_flags(PF_X | PF_R);
 	text_seg->set_align(0x1000);
 	text_seg->add_section_index(text_sec->get_index(), text_sec->get_addr_align());
@@ -44,8 +49,8 @@ void Mounter::mount(std::string foutname) {
 	data_sec->set_data(data.c_str(),sizeof(data.c_str()));
 	ELFIO::segment* data_seg = writter.segments.add();
 	data_seg->set_type(PT_LOAD);
-	data_seg->set_virtual_address(0x08049000);
-	data_seg->set_physical_address(0x8049000);
+	data_seg->set_virtual_address(INIT_SECTION_DATA);
+	data_seg->set_physical_address(INIT_SECTION_DATA);
 	data_seg->set_flags(PF_W | PF_R);
 	data_seg->set_align(0x10);
 	data_seg->add_section_index(data_sec->get_index(), data_sec->get_addr_align());

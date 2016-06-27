@@ -7,6 +7,23 @@
 #include "token.h"
 #include "TokenCreator.h"
 
+struct Label{
+	Label(std::string n, int a) : name(n), address(a) {}
+	std::string name;
+	int address;
+};
+struct Call{
+	Call(std::string n, int a, int t) : name(n), address(a), type(t) {}
+	std::string name;
+	int address;
+	int type;
+};
+struct Jump{
+	Jump(std::string n, int a, std::string l) : name(n), address(a), label(l) {}
+	std::string name;
+	int address;
+	std::string label;
+};
 
 //This class translates Tokens from Invented assembly into IA32 assembly
 class Translator2 {
@@ -25,6 +42,11 @@ private:
 	std::vector<Token> tokens;
 	std::vector<size_t (Translator2::*)(int)> functions;
 	std::string foutname;
+	int address_data, address_text;
+	std::vector<Label> labels;
+	std::vector<Call> calls;
+	std::vector<Jump> jumps;
+	std::string IObin;
 
 	size_t add(int i);
 	size_t sub(int i);
@@ -56,10 +78,12 @@ private:
 	size_t if_asm(int i);
 
 	size_t checkPrevLabel(int i);
-	std::string labelName(Token tk);
+	std::string labelName(Token& tk);
 	bool isInteger(std::string s);
 	void generateAsmFile();
 	void init();
+	void repLabels();
+	int getLabelAddress(std::string s);
 };
 
 #endif
